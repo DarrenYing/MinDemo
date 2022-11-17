@@ -71,7 +71,7 @@ def get_tflops(model_numel, batch_size, seq_len, step_time):
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size',
-                        default=4,
+                        default=1,
                         type=int,
                         help='mini-batch size')
     parser.add_argument('--patch_size',
