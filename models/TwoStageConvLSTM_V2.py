@@ -49,6 +49,10 @@ class Stage0Model(nn.Module):
                                )
             self.h_t.append(zeros)
             self.c_t.append(zeros)
+
+    def reset_hc(self):
+        self.h_t = []
+        self.c_t = []
             
     def forward(self, frame):
         
@@ -93,6 +97,10 @@ class Stage1Model(nn.Module):
             self.h_t.append(zeros)
             self.c_t.append(zeros)
 
+    def reset_hc(self):
+        self.h_t = []
+        self.c_t = []
+
     def forward(self, h):
 
         if not len(self.h_t):
@@ -132,6 +140,9 @@ class PredRNNPipeline(nn.Module):
 
         output = []
 
+        self.s0_model.reset_hc()
+        self.s1_model.reset_hc()
+
         for t in range(self.seq_len - 1):
             if t < self.input_len:
                 frame = frames[:, t]
@@ -161,6 +172,7 @@ class PredRNNGraph(nn.Graph):
         self.module_pipeline = pipeline
         self.module_pipeline.s0_model.config.set_stage(stage_id=0, placement=self.P0)
         self.module_pipeline.s1_model.config.set_stage(stage_id=1, placement=self.P1)
+        self.module_pipeline.conv_last.config.set_stage(stage_id=0, placement=self.P0)
         self.loss_fn = flow.nn.MSELoss()
         self.add_optimizer(sgd)
 

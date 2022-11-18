@@ -42,8 +42,8 @@ class Logger(object):
             print("[rank:{}] {}".format(self.rank, ", ".join(fields)))
 
     def print(self, *args, print_ranks=None):
-        do_print = self.rank in (print_ranks or self.print_ranks)  # 前者为None，则判断后者
-        if do_print:
-            print(*args)
+        # do_print = self.rank in (print_ranks or self.print_ranks)  # 前者为None，则判断后者
+        # if do_print:
+        print(*args)
 
 

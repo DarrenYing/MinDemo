@@ -84,7 +84,9 @@ def train_graph():
             _, mask = schedule_sampling(1.0, epoch)
             mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=BROADCAST)
             loss = graph_pipeline(batch_data, mask)
-            logger.print(loss)
+            print(graph_pipeline)
+            # logger.print(loss)
+            # print(loss)
             # loss_aver = loss.sum().item() / args.batch_size
 
         flow.save(model.state_dict(), args.checkpoint_path, global_dst_rank=0)
@@ -120,20 +122,27 @@ def evaluate_model():
     }
     loss_recoder = LossRecoder(flow.env.get_rank(), [0], **stats)
 
+    mse_criterion = flow.nn.MSELoss()
+    mae_criterion = flow.nn.L1Loss()
     with flow.no_grad():
         for batch_idx, batch_data in enumerate(test_dataloader):
             batch_data = flow.tensor(reshape_patch(batch_data, args.patch_size),
                                      dtype=flow.float32, placement=P0,
                                      sbp=BROADCAST)
+
             _, mask = schedule_sampling(1.0, 0)
             mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=BROADCAST)
             output = model(batch_data, mask)
-            output = output.detach().cpu().to_local()
-            batch_data = batch_data.detach().cpu().to_local()
-            loss_recoder.calc_scores(output, batch_data[:, 1:])
+            # output = output.detach().cpu().to_local()
+            # batch_data = batch_data.detach().cpu().to_local()
+            # loss_recoder.calc_scores(output, batch_data[:, 1:])
+            mse_score = mse_criterion(output, batch_data[:, 1:])
+            mae_score = mae_criterion(output, batch_data[:, 1:])
+            if flow.env.get_rank() == 0:
+                print(mse_score, mae_score)
 
-        loss_recoder.record()
-        loss_recoder.save(args.stats_path)
+    # loss_recoder.record()
+    # loss_recoder.save(args.stats_path)
 
 
 if __name__ == '__main__':
