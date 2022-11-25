@@ -84,6 +84,10 @@ class Stage1Model(nn.Module):
         self.h_t = []
         self.c_t = []
 
+        self.conv_last = nn.Conv2d(num_hidden[-1], patch_size ** 2,
+                                   kernel_size=1, stride=1,
+                                   padding=0, bias=False)
+
     def init_hc(self, input_shape, input_placement, input_sbp):
         batch = input_shape[0]
         height = input_shape[2]
@@ -110,7 +114,9 @@ class Stage1Model(nn.Module):
         for i in range(1, self.num_layers):
             self.h_t[i], self.c_t[i] = self.cell_list[i](self.h_t[i - 1], self.h_t[i], self.c_t[i])
 
-        return self.h_t[self.num_layers - 1]
+        # return self.h_t[self.num_layers - 1]
+        output = self.conv_last(self.h_t[self.num_layers - 1])
+        return output
 
 
 class PredRNNPipeline(nn.Module):
@@ -127,9 +133,9 @@ class PredRNNPipeline(nn.Module):
         self.s0_model.to_global(placement=self.P0, sbp=BROADCAST)
         self.s1_model.to_global(placement=self.P1, sbp=BROADCAST)
 
-        self.conv_last = nn.Conv2d(num_hidden, self.out_channel,
-                                   kernel_size=1, stride=1,
-                                   padding=0, bias=False).to_global(placement=self.P0, sbp=BROADCAST)
+        # self.conv_last = nn.Conv2d(num_hidden, self.out_channel,
+        #                            kernel_size=1, stride=1,
+        #                            padding=0, bias=False).to_global(placement=self.P0, sbp=BROADCAST)
 
     def forward(self, frames, mask_true):
         """
@@ -153,11 +159,14 @@ class PredRNNPipeline(nn.Module):
             # conv-lstm layer
             h1 = self.s0_model(frame)
             h1 = h1.to_global(placement=self.P1, sbp=BROADCAST)
-            h3 = self.s1_model(h1)
-            # 移动到P0
-            h3 = h3.to_global(placement=self.P0, sbp=BROADCAST)
+            # h3 = self.s1_model(h1)
+            # # 移动到P0
+            # h3 = h3.to_global(placement=self.P0, sbp=BROADCAST)
+            #
+            # x_gen = self.conv_last(h3)
 
-            x_gen = self.conv_last(h3)
+            x_gen = self.s1_model(h1)
+            x_gen = x_gen.to_global(placement=self.P0, sbp=BROADCAST)
             output.append(x_gen)
 
         output = flow.stack(output, dim=1)
@@ -172,7 +181,7 @@ class PredRNNGraph(nn.Graph):
         self.module_pipeline = pipeline
         self.module_pipeline.s0_model.config.set_stage(stage_id=0, placement=self.P0)
         self.module_pipeline.s1_model.config.set_stage(stage_id=1, placement=self.P1)
-        self.module_pipeline.conv_last.config.set_stage(stage_id=0, placement=self.P0)
+        # self.module_pipeline.conv_last.config.set_stage(stage_id=0, placement=self.P0)
         self.loss_fn = flow.nn.MSELoss()
         self.add_optimizer(sgd)
 
