@@ -27,7 +27,7 @@ parser = get_parser()
 
 args = parser.parse_args()
 
-num_hidden = [64, 64, 64, 64]
+num_hidden = [16, 16, 16, 16]
 
 
 def schedule_sampling(eta, itr):
@@ -84,10 +84,10 @@ def train_graph():
             _, mask = schedule_sampling(1.0, epoch)
             mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=BROADCAST)
             loss = graph_pipeline(batch_data, mask)
-            print(graph_pipeline)
+            # print(graph_pipeline)
             # logger.print(loss)
-            # print(loss)
-            # loss_aver = loss.sum().item() / args.batch_size
+            loss_aver = loss.sum().item() / args.batch_size
+            print(loss_aver)
 
         flow.save(model.state_dict(), args.checkpoint_path, global_dst_rank=0)
 

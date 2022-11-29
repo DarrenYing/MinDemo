@@ -80,7 +80,7 @@ def get_parser():
                         help='image patch size')
     parser.add_argument('--input_length', type=int, default=10)
     parser.add_argument('--total_length', type=int, default=20)
-    parser.add_argument('--img_width', type=int, default=900)
+    parser.add_argument('--img_width', type=int, default=128)
     parser.add_argument('--img_channel', type=int, default=1)
     parser.add_argument('--scheduled_sampling', type=int, default=0)
     parser.add_argument('--display_interval', type=int, default=10)

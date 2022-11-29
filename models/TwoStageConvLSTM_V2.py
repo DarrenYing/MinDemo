@@ -150,11 +150,11 @@ class PredRNNPipeline(nn.Module):
         self.s1_model.reset_hc()
 
         for t in range(self.seq_len - 1):
-            if t < self.input_len:
-                frame = frames[:, t]
-            else:
-                frame = mask_true[:, t - self.input_len] * frames[:, t] + \
-                      (1 - mask_true[:, t - self.input_len]) * x_gen
+            # if t < self.input_len:
+            frame = frames[:, t]
+            # else:
+            #     frame = mask_true[:, t - self.input_len] * frames[:, t] + \
+            #           (1 - mask_true[:, t - self.input_len]) * x_gen
 
             # conv-lstm layer
             h1 = self.s0_model(frame)
@@ -166,12 +166,13 @@ class PredRNNPipeline(nn.Module):
             # x_gen = self.conv_last(h3)
 
             x_gen = self.s1_model(h1)
-            x_gen = x_gen.to_global(placement=self.P0, sbp=BROADCAST)
+            # x_gen = x_gen.to_global(placement=self.P0, sbp=BROADCAST)
             output.append(x_gen)
 
         output = flow.stack(output, dim=1)
         return output
 
+from oneflow.nn.graph import GraphModule, GraphTensor
 
 class PredRNNGraph(nn.Graph):
     def __init__(self, pipeline, sgd, configs, placement_cfg):
@@ -179,8 +180,8 @@ class PredRNNGraph(nn.Graph):
         self.P0 = placement_cfg[0]
         self.P1 = placement_cfg[1]
         self.module_pipeline = pipeline
-        self.module_pipeline.s0_model.config.set_stage(stage_id=0, placement=self.P0)
-        self.module_pipeline.s1_model.config.set_stage(stage_id=1, placement=self.P1)
+        self.module_pipeline.s0_model.to(GraphModule).set_stage(stage_id=0, placement=self.P0)
+        self.module_pipeline.s1_model.to(GraphModule).set_stage(stage_id=1, placement=self.P1)
         # self.module_pipeline.conv_last.config.set_stage(stage_id=0, placement=self.P0)
         self.loss_fn = flow.nn.MSELoss()
         self.add_optimizer(sgd)
@@ -190,13 +191,14 @@ class PredRNNGraph(nn.Graph):
         if configs.amp:
             self.config.enable_amp(True)
         if configs.encoder_ac:
-            self.module_pipeline.s0_model.config.activation_checkpointing = True  # 开启激活重计算
+            self.module_pipeline.s0_model.to(GraphModule).activation_checkpointing = True  # 开启激活重计算
         if configs.decoder_ac:
-            self.module_pipeline.s1_model.config.activation_checkpointing = True  # 开启激活重计算
+            self.module_pipeline.s1_model.to(GraphModule).activation_checkpointing = True  # 开启激活重计算
 
     def build(self, inputs, mask):
         out = self.module_pipeline(inputs, mask)
-        loss = self.loss_fn(out, inputs[:, 1:])
+        labels = inputs[:, 1:].to_global(placement=self.P1, sbp=BROADCAST)
+        loss = self.loss_fn(out, labels)
         loss.backward()
         return loss
 
