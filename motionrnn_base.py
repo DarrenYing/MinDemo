@@ -1,5 +1,5 @@
 """
-PredRNN形式的ConvLSTM
+MotionRNN+PredRNN
 无流水线并行
 """
 
@@ -7,20 +7,20 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
 
 import oneflow as flow
-from oneflow import nn
+from oneflow.utils import data
 from tqdm import tqdm
 import numpy as np
+from tensorboardX import SummaryWriter
 
-from models.BaseConvLSTM_V2 import BaseConvLSTM, BasePredRNNGraph
+from models.MotionRNN_PredRNN import MotionRNN, MotionRNNGraph
 from utils.dataset import FakeDataset
 import utils.logger as log
 from utils.utils import reshape_patch, get_parser
 from utils.loss_utils import LossRecoder
 
-device = flow.device("cuda:0")
+device = flow.device("cuda:2")
 
 parser = get_parser()
 
@@ -28,17 +28,27 @@ args = parser.parse_args()
 
 num_hidden = [64, 64, 64, 64]
 
+org_width = 900
+PATCH_SIZE = args.patch_size
+width = org_width // PATCH_SIZE
+seq_len = args.total_length
+input_len = args.input_length
+
+
 def schedule_sampling(eta, itr):
     zeros = np.zeros((args.batch_size,
                       args.total_length - args.input_length - 1,
-                      args.patch_size ** 2 * args.img_channel,
-                      args.img_width // args.patch_size,
-                      args.img_width // args.patch_size,
+                      PATCH_SIZE ** 2 * args.img_channel,
+                      args.img_width // PATCH_SIZE,
+                      args.img_width // PATCH_SIZE,
                       ))
     return 0.0, zeros
 
 
 def train_graph():
+    # init summary writer
+    run_dir = args.tb_summary_path
+    tb = SummaryWriter(run_dir)
 
     # init logger
     logger = log.get_logger(flow.env.get_rank(), [0])
@@ -60,33 +70,50 @@ def train_graph():
 
     # init model and graph
     num_layers = 4
-    model = BaseConvLSTM(num_layers, num_hidden, args.patch_size, args.total_length, args.input_length).to(device)
+    model = MotionRNN(num_layers, num_hidden, args).to(device)
+    numel = sum([p.numel() for p in model.parameters()])
+    logger.print("model size: ", numel)
 
     sgd = flow.optim.SGD(model.parameters(), lr=0.001)
 
-    base_graph = BasePredRNNGraph(model, sgd, args)
-    # base_graph.debug(1)
+    base_graph = MotionRNNGraph(model, sgd, args)
+    base_graph.debug(1)
 
+    logger.print("model loaded")
+
+    mse_criterion = flow.nn.MSELoss()
     # train
+    total_loss = 0
     for epoch in range(1):
-        for batch_idx, batch_data in enumerate(train_dataloader):
-            batch_data = flow.tensor(reshape_patch(batch_data, args.patch_size),
+        for batch_idx, batch_data in enumerate(train_dataloader, 1):
+            batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
                                      dtype=flow.float32).to(device)
             _, mask = schedule_sampling(1.0, epoch)
             mask = flow.tensor(mask, dtype=flow.float32).to(device)
+            # eager模式
+            # output = model(batch_data, mask)
+            # sgd.zero_grad()
+            # loss = mse_criterion(output, batch_data[:, 1:])
+            # loss.backward()
+            # sgd.step()
+            # logger.print(loss)
+
+            # graph模式
             loss = base_graph(batch_data, mask)
-            logger.print(loss)
-            # loss_aver = loss.item() / args.batch_size
-            # if batch_idx % args.display_interval == 0:
-            #     logger.print(f'epoch: {epoch}, batch: {batch_idx} / {totol_batch}, loss: {loss_aver}')
+            loss_aver = loss.sum().item() / args.batch_size
+            total_loss += loss.sum().item()
+            if batch_idx % args.display_interval == 0:
+                logger.print(f'epoch: {epoch}, batch: {batch_idx} / {totol_batch}, loss: {total_loss}')
+                # logger.print(f'time: {step_time:.3f}, TFLOPS: {get_tflops_func(step_time):.3f}')
+                tb.add_scalar('TrainLoss', loss_aver, batch_idx)
+                tb.add_scalar('TrainLoss2', total_loss / batch_idx, batch_idx)
 
         flow.save(model.state_dict(), args.checkpoint_path)
-
 
 def evaluate_model():
     # init model and graph
     num_layers = 4
-    model = BaseConvLSTM(num_layers, num_hidden, args.patch_size, args.total_length, args.input_length).to(device)
+    model = MotionRNN(num_layers, num_hidden, args).to(device)
     params = flow.load(args.checkpoint_path)
     model.load_state_dict(params)
 
@@ -111,13 +138,14 @@ def evaluate_model():
 
     with flow.no_grad():
         for batch_idx, batch_data in enumerate(test_dataloader):
-            batch_data = flow.tensor(reshape_patch(batch_data, args.patch_size),
+            batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
                                      dtype=flow.float32).to(device)
             _, mask = schedule_sampling(1.0, 0)
             mask = flow.tensor(mask, dtype=flow.float32).to(device)
             output = model(batch_data, mask)
             output = output.detach().cpu()
             batch_data = batch_data.detach().cpu()
+            # output_image(output, PATCH_SIZE, args.output_path)
             loss_recoder.calc_scores(output, batch_data[:, 1:])
 
         loss_recoder.record()

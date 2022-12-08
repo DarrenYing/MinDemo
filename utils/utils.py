@@ -75,21 +75,29 @@ def get_parser():
                         type=int,
                         help='mini-batch size')
     parser.add_argument('--patch_size',
-                        default=9,
+                        default=4,
                         type=int,
                         help='image patch size')
     parser.add_argument('--input_length', type=int, default=10)
     parser.add_argument('--total_length', type=int, default=20)
-    parser.add_argument('--img_width', type=int, default=900)
+    parser.add_argument('--img_height', type=int, default=200)
+    parser.add_argument('--img_width', type=int, default=200)
     parser.add_argument('--img_channel', type=int, default=1)
+    parser.add_argument('--filter_size', type=int, default=5)
+    parser.add_argument('--stride', type=int, default=1)
+    parser.add_argument('--layer_norm', type=int, default=1)
     parser.add_argument('--scheduled_sampling', type=int, default=0)
-    parser.add_argument('--display_interval', type=int, default=10)
+
+    parser.add_argument('--display_interval', type=int, default=100)
+    parser.add_argument('--test_interval', type=int, default=2000)
     parser.add_argument('--checkpoint_path', type=str, default="checkpoints/")
     parser.add_argument('--output_path', type=str, default="output_images/")
     parser.add_argument('--run_mode', type=str, default="train")
     parser.add_argument('--tb_summary_path', type=str, default="runs/")
     parser.add_argument('--stats_path', type=str, default="model_stats/")
+    parser.add_argument('--gpus', type=str, default="2,3")
 
+    # 和流水线并行结合的技术
     parser.add_argument('--grad_acc',
                         default=1,
                         type=int,
