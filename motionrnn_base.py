@@ -20,7 +20,7 @@ import utils.logger as log
 from utils.utils import reshape_patch, get_parser
 from utils.loss_utils import LossRecoder
 
-device = flow.device("cuda:2")
+device = flow.device("cuda:0")
 
 parser = get_parser()
 
@@ -28,19 +28,12 @@ args = parser.parse_args()
 
 num_hidden = [64, 64, 64, 64]
 
-org_width = 900
-PATCH_SIZE = args.patch_size
-width = org_width // PATCH_SIZE
-seq_len = args.total_length
-input_len = args.input_length
-
-
 def schedule_sampling(eta, itr):
     zeros = np.zeros((args.batch_size,
                       args.total_length - args.input_length - 1,
-                      PATCH_SIZE ** 2 * args.img_channel,
-                      args.img_width // PATCH_SIZE,
-                      args.img_width // PATCH_SIZE,
+                      args.patch_size ** 2 * args.img_channel,
+                      args.img_width // args.patch_size,
+                      args.img_width // args.patch_size,
                       ))
     return 0.0, zeros
 
@@ -86,7 +79,7 @@ def train_graph():
     total_loss = 0
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
-            batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
+            batch_data = flow.tensor(reshape_patch(batch_data, args.patch_size),
                                      dtype=flow.float32).to(device)
             _, mask = schedule_sampling(1.0, epoch)
             mask = flow.tensor(mask, dtype=flow.float32).to(device)
@@ -109,6 +102,7 @@ def train_graph():
                 tb.add_scalar('TrainLoss2', total_loss / batch_idx, batch_idx)
 
         flow.save(model.state_dict(), args.checkpoint_path)
+
 
 def evaluate_model():
     # init model and graph
@@ -138,14 +132,14 @@ def evaluate_model():
 
     with flow.no_grad():
         for batch_idx, batch_data in enumerate(test_dataloader):
-            batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
+            batch_data = flow.tensor(reshape_patch(batch_data, args.patch_size),
                                      dtype=flow.float32).to(device)
             _, mask = schedule_sampling(1.0, 0)
             mask = flow.tensor(mask, dtype=flow.float32).to(device)
             output = model(batch_data, mask)
             output = output.detach().cpu()
             batch_data = batch_data.detach().cpu()
-            # output_image(output, PATCH_SIZE, args.output_path)
+            # output_image(output, args.patch_size, args.output_path)
             loss_recoder.calc_scores(output, batch_data[:, 1:])
 
         loss_recoder.record()
