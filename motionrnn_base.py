@@ -7,6 +7,7 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 
 import oneflow as flow
 from oneflow.utils import data
@@ -61,6 +62,7 @@ def train_graph():
     train_dataloader = tqdm(train_dataloader)
     totol_batch = len(train_dataloader)
 
+
     # init model and graph
     num_layers = 4
     model = MotionRNN(num_layers, num_hidden, args).to(device)
@@ -89,10 +91,10 @@ def train_graph():
             # loss = mse_criterion(output, batch_data[:, 1:])
             # loss.backward()
             # sgd.step()
-            # logger.print(loss)
 
             # graph模式
             loss = base_graph(batch_data, mask)
+
             loss_aver = loss.sum().item() / args.batch_size
             total_loss += loss.sum().item()
             if batch_idx % args.display_interval == 0:
