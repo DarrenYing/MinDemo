@@ -1,7 +1,10 @@
-__author__ = 'haixu'
+"""
+适配流水线并行的MotionGRU
+"""
 
 import oneflow as flow
 import oneflow.nn as nn
+
 
 class Warp(nn.Module):
     def __init__(self, inc, outc, neighbour=3):
@@ -22,7 +25,8 @@ class Warp(nn.Module):
         x = info[0]
         offset = info[1]
 
-        dtype = offset.data.type()
+        # dtype = offset.data.type()
+        dtype = offset.dtype
         N = self.neighbour * self.neighbour
 
         m = flow.sigmoid(self.warp_gate(x))
@@ -73,29 +77,34 @@ class Warp(nn.Module):
         out = self.conv(x_warped)
         return out
 
-    def _get_p_n(self, N, dtype):
+    def _get_p_n(self, N, dtype, placement):
         p_n_x, p_n_y = flow.meshgrid(
-            flow.arange(-(self.neighbour - 1) // 2, (self.neighbour - 1) // 2 + 1),
-            flow.arange(-(self.neighbour - 1) // 2, (self.neighbour - 1) // 2 + 1))
+            flow.arange(-(self.neighbour - 1) // 2, (self.neighbour - 1) // 2 + 1,
+                        dtype=dtype, placement=placement, sbp=flow.sbp.broadcast),
+            flow.arange(-(self.neighbour - 1) // 2, (self.neighbour - 1) // 2 + 1,
+                        dtype=dtype, placement=placement, sbp=flow.sbp.broadcast),
+            )
         # (2N, 1)
         p_n = flow.cat([flow.flatten(p_n_x), flow.flatten(p_n_y)], 0)
-        p_n = p_n.view(1, 2 * N, 1, 1).type(dtype)
+        p_n = p_n.view(1, 2 * N, 1, 1)
         return p_n
 
-    def _get_p_0(self, h, w, N, dtype):
-        p_0_x, p_0_y = flow.meshgrid(flow.arange(1, h + 1, 1), flow.arange(1, w + 1, 1))
+    def _get_p_0(self, h, w, N, dtype, placement):
+        p_0_x, p_0_y = flow.meshgrid(
+            flow.arange(1, h + 1, 1, dtype=dtype, placement=placement, sbp=flow.sbp.broadcast),
+            flow.arange(1, w + 1, 1, dtype=dtype, placement=placement, sbp=flow.sbp.broadcast),
+            )
         p_0_x = flow.flatten(p_0_x).view(1, 1, h, w).repeat(1, N, 1, 1)
         p_0_y = flow.flatten(p_0_y).view(1, 1, h, w).repeat(1, N, 1, 1)
-        p_0 = flow.cat([p_0_x, p_0_y], 1).type(dtype)
+        p_0 = flow.cat([p_0_x, p_0_y], 1)
         return p_0
 
     def _get_p(self, offset, dtype):
         N, h, w = offset.size(1) // 2, offset.size(2), offset.size(3)
         # (1, 2N, 1, 1)
-        device = offset.device
-        p_n = self._get_p_n(N, dtype).to(device)
+        p_n = self._get_p_n(N, dtype, offset.placement)
         # (1, 2N, h, w)
-        p_0 = self._get_p_0(h, w, N, dtype).to(device)
+        p_0 = self._get_p_0(h, w, N, dtype, offset.placement)
         p = p_0 + p_n + offset
         return p
 
@@ -154,3 +163,6 @@ class MotionGRU(nn.Module):
 
         x_t = self.warp([x_t, offset])
         return x_t, offset, mean
+
+
+

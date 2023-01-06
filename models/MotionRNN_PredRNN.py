@@ -5,6 +5,7 @@ MotionRNN+PredRNN
 
 import oneflow as flow
 import oneflow.nn as nn
+from oneflow.nn import init
 from models.SpatioTemporalLSTMCell_Motion_Highway import SpatioTemporalLSTMCell
 from models.MotionGRU import MotionGRU
 
@@ -32,7 +33,7 @@ class MotionRNN(nn.Module):
         for i in range(num_layers - 1):
             enc_list.append(
                 nn.Conv2d(num_hidden[i], num_hidden[i] // 4, kernel_size=configs.filter_size, stride=2,
-                          padding=configs.filter_size // 2),
+                          padding=configs.filter_size // 2),  # - 1
             )
         motion_list = []
         for i in range(num_layers - 1):
@@ -42,7 +43,7 @@ class MotionRNN(nn.Module):
         dec_list = []
         for i in range(num_layers - 1):
             dec_list.append(
-                nn.ConvTranspose2d(num_hidden[i] // 4, num_hidden[i], kernel_size=4, stride=2,
+                nn.ConvTranspose2d(num_hidden[i] // 4, num_hidden[i], kernel_size=4, stride=2,  # + 1
                                    padding=1),
             )
         gate_list = []
@@ -92,11 +93,11 @@ class MotionRNN(nn.Module):
 
         mem = flow.empty([self.configs.batch_size, self.num_hidden[0], self.patch_height, self.patch_width])\
             .to(frames.device)
-        motion_highway = flow.empty(
-            [self.configs.batch_size, self.num_hidden[0], self.patch_height, self.patch_width])\
-            .to(frames.device)
+        # motion_highway = flow.empty(
+        #     [self.configs.batch_size, self.num_hidden[0], self.patch_height, self.patch_width])\
+        #     .to(frames.device)
         nn.init.xavier_normal_(mem)
-        nn.init.xavier_normal_(motion_highway)
+        # nn.init.xavier_normal_(motion_highway)
 
         for t in range(self.configs.total_length - 1):
             if t < self.configs.input_length:
@@ -141,8 +142,8 @@ class MotionRNNGraph(nn.Graph):
 
         # if configs.grad_acc > 1:
         #     self.config.set_gradient_accumulation_steps(configs.grad_acc)
-        # if configs.amp:
-        #     self.config.enable_amp(True)
+        if configs.amp:
+            self.config.enable_amp(True)
 
     def build(self, inputs, mask):
         out = self.model(inputs, mask)
