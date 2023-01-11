@@ -82,7 +82,7 @@ def train_graph():
     total_loss = 0
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
-            batch_data = flow.from_numpy(reshape_patch(batch_data, args.args.patch_size))
+            batch_data = flow.from_numpy(reshape_patch(batch_data, args.patch_size))
             batch_data = flow.tensor(batch_data, dtype=flow.float32, placement=P01, sbp=S0)
 
             mask = flow.from_numpy(schedule_sampling())
@@ -130,7 +130,7 @@ def train_eager():
     # train
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
-            batch_data = flow.from_numpy(reshape_patch(batch_data, args.args.patch_size))
+            batch_data = flow.from_numpy(reshape_patch(batch_data, args.patch_size))
             batch_data = flow.tensor(batch_data, dtype=flow.float32, placement=P01, sbp=S0)
             mask = flow.from_numpy(schedule_sampling())
             mask = flow.tensor(mask, dtype=flow.float32, placement=P01, sbp=S0)
