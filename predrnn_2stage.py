@@ -1,5 +1,5 @@
 """
-MotionRNN_PredRNN流水线并行测试
+PredRNN流水线并行测试
 实现了两阶段流水线实际训练
 """
 import os
@@ -12,22 +12,23 @@ from tqdm import tqdm
 import numpy as np
 from tensorboardX import SummaryWriter
 
-from models.TwoStageMotionRNN import MotionRNNPipeline, MotionRNNGraph, Stage0Model, Stage1Model
+from models.TwoStagePredRNN import PredRNNPipeline, PredRNNGraph, Stage0Model, Stage1Model
 from utils.dataset import FakeDataset
 import utils.logger as log
 from utils.utils import reshape_patch, get_parser
 from utils.loss_utils import LossRecoder
 
 BROADCAST = [flow.sbp.broadcast]
-S0 = flow.sbp.split(0)
-P0 = flow.placement("cuda", ranks=[0, 1])
-P1 = flow.placement("cuda", ranks=[2, 3])
+S0 = flow.sbp.split(dim=0)
+P0 = flow.placement("cuda", ranks=[0])
+P1 = flow.placement("cuda", ranks=[2])
 
 
 parser = get_parser()
 
 args = parser.parse_args()
 
+# os.environ['CUDA_VISIBLE_DEVICES'] = '2,3'  #args.gpus
 gpu_ids = [int(x) for x in os.environ['CUDA_VISIBLE_DEVICES'].split(',')]
 
 num_hidden = [64, 64, 64, 64]
@@ -102,35 +103,39 @@ def train_graph():
 
     # init model and graph
     num_layers = 2
-    s0_model = Stage0Model(num_layers, num_hidden[:2], args)
-    s1_model = Stage1Model(num_layers, num_hidden[2:], args)
-    model = MotionRNNPipeline(s0_model, s1_model, num_hidden[0], args, [P0, P1])
+    s0_model = Stage0Model(num_layers, num_hidden[:2], PATCH_SIZE)
+    s1_model = Stage1Model(num_layers, num_hidden[2:], PATCH_SIZE)
+    model = PredRNNPipeline(s0_model, s1_model, args.total_length, args.input_length, num_hidden[-1],
+                            PATCH_SIZE, [P0, P1])
     numel = sum([p.numel() for p in model.parameters()])
     logger.print("model size: ", numel)
 
     sgd = flow.optim.SGD(model.parameters(), lr=0.001)
 
-    graph_pipeline = MotionRNNGraph(model, sgd, args, [P0, P1])
+    graph_pipeline = PredRNNGraph(model, sgd, args, [P0, P1])
     graph_pipeline.debug(1)
 
     # train
     total_loss = 0
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
-            batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
-                                     dtype=flow.float32, placement=P0,
-                                     sbp=BROADCAST)
+            batch_data = flow.from_numpy(reshape_patch(batch_data, PATCH_SIZE))
+            batch_data = batch_data.to_global(placement=P0, sbp=BROADCAST)
+            # batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
+            #                          dtype=flow.float32, placement=P0,
+            #                          sbp=S0)
             _, mask = schedule_sampling(1.0, epoch)
             mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=BROADCAST)
-            loss = graph_pipeline(batch_data, mask)
-            loss_aver = loss.sum().item() / args.batch_size
-            total_loss += loss.sum().item()
-            if batch_idx % args.display_interval == 0:
-                logger.print(f'epoch: {epoch}, batch: {batch_idx} / {totol_batch}, loss: {total_loss}')
-                tb.add_scalar('TrainLoss', loss_aver, batch_idx)
-                tb.add_scalar('TrainLoss2', total_loss / batch_idx, batch_idx)
 
-        flow.save(model.state_dict(), args.checkpoint_path, global_dst_rank=0)
+            loss = graph_pipeline(batch_data, mask)
+        #     loss_aver = loss.sum().item() / args.batch_size
+        #     total_loss += loss.sum().item()
+        #     if batch_idx % args.display_interval == 0:
+        #         logger.print(f'epoch: {epoch}, batch: {batch_idx} / {totol_batch}, loss: {total_loss / batch_idx}')
+        #         tb.add_scalar('TrainLoss', loss_aver, batch_idx)
+        #         tb.add_scalar('TrainLoss2', total_loss / batch_idx, batch_idx)
+        #
+        # flow.save(model.state_dict(), args.checkpoint_path, global_dst_rank=0)
 
 
 def evaluate_model():
@@ -138,7 +143,8 @@ def evaluate_model():
     num_layers = 2
     s0_model = Stage0Model(num_layers, num_hidden[:2], PATCH_SIZE)
     s1_model = Stage1Model(num_layers, num_hidden[2:], PATCH_SIZE)
-    model = MotionRNNPipeline(s0_model, s1_model, num_hidden[0], args, [P0, P1])
+    model = PredRNNPipeline(s0_model, s1_model, args.total_length, args.input_length,
+                            num_hidden[-1], PATCH_SIZE, [P0, P1])
     params = flow.load(args.checkpoint_path, global_src_rank=0)
     model.load_state_dict(params)
 
