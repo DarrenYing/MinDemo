@@ -1,6 +1,7 @@
 """
 MotionRNN+PredRNN
 无流水线并行
+python3 -m oneflow.distributed.launch --nproc_per_node=1 motionrnn_base.py
 """
 
 import os
@@ -21,7 +22,12 @@ import utils.logger as log
 from utils.utils import reshape_patch, get_parser
 from utils.loss_utils import LossRecoder
 
-device = flow.device("cuda:0")
+DEVICE = "cuda" if flow.cuda.is_available() else "cpu"
+
+P01 = flow.placement("cuda", [0, 1])
+P0 = flow.placement("cuda", [0])
+S0 = flow.sbp.split(0)
+B = flow.sbp.broadcast
 
 parser = get_parser()
 
@@ -65,8 +71,11 @@ def train_graph():
 
     # init model and graph
     num_layers = 4
-    model = MotionRNN(num_layers, num_hidden, args).to(device)
+    model = MotionRNN(num_layers, num_hidden, args).to(DEVICE)
     numel = sum([p.numel() for p in model.parameters()])
+
+    # model = model.to_global(placement=P01, sbp=B)
+
     logger.print("model size: ", numel)
 
     sgd = flow.optim.SGD(model.parameters(), lr=0.001)
@@ -76,21 +85,19 @@ def train_graph():
 
     logger.print("model loaded")
 
-    mse_criterion = flow.nn.MSELoss()
     # train
     total_loss = 0
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
+            # batch_data = flow.from_numpy(reshape_patch(batch_data, args.patch_size))
+            # batch_data = batch_data.to_global(placement=P01, sbp=S0)
+            # _, mask = schedule_sampling(1.0, epoch)
+            # mask = mask.to_global(placement=P01, sbp=S0)
+
             batch_data = flow.tensor(reshape_patch(batch_data, args.patch_size),
-                                     dtype=flow.float32).to(device)
+                                     dtype=flow.float32).to(DEVICE)
             _, mask = schedule_sampling(1.0, epoch)
-            mask = flow.tensor(mask, dtype=flow.float32).to(device)
-            # eager模式
-            # output = model(batch_data, mask)
-            # sgd.zero_grad()
-            # loss = mse_criterion(output, batch_data[:, 1:])
-            # loss.backward()
-            # sgd.step()
+            mask = flow.tensor(mask, dtype=flow.float32).to(DEVICE)
 
             # graph模式
             loss = base_graph(batch_data, mask)
@@ -109,7 +116,7 @@ def train_graph():
 def evaluate_model():
     # init model and graph
     num_layers = 4
-    model = MotionRNN(num_layers, num_hidden, args).to(device)
+    model = MotionRNN(num_layers, num_hidden, args).to(DEVICE)
     params = flow.load(args.checkpoint_path)
     model.load_state_dict(params)
 

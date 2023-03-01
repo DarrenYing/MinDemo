@@ -71,7 +71,7 @@ def get_tflops(model_numel, batch_size, seq_len, step_time):
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size',
-                        default=1,
+                        default=2,
                         type=int,
                         help='mini-batch size')
     parser.add_argument('--patch_size',
@@ -80,8 +80,8 @@ def get_parser():
                         help='image patch size')
     parser.add_argument('--input_length', type=int, default=10)
     parser.add_argument('--total_length', type=int, default=20)
-    parser.add_argument('--img_height', type=int, default=900)
-    parser.add_argument('--img_width', type=int, default=900)
+    parser.add_argument('--img_height', type=int, default=400)
+    parser.add_argument('--img_width', type=int, default=400)
     parser.add_argument('--img_channel', type=int, default=1)
     parser.add_argument('--filter_size', type=int, default=5)
     parser.add_argument('--stride', type=int, default=1)

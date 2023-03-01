@@ -298,13 +298,13 @@ class MotionRNNPipeline(nn.Module):
 
             # conv-lstm layer
             h1, mem, motion_highway = self.s0_model(frame, mem)
-            h1 = h1.to_global(placement=self.P1, sbp=BROADCAST)
-            mem = mem.to_global(placement=self.P1, sbp=BROADCAST)
-            motion_highway = motion_highway.to_global(placement=self.P1, sbp=BROADCAST)
+            h1 = h1.to_global(placement=self.P1, sbp=frames.sbp)
+            mem = mem.to_global(placement=self.P1, sbp=frames.sbp)
+            motion_highway = motion_highway.to_global(placement=self.P1, sbp=frames.sbp)
 
             x_gen, mem = self.s1_model(h1, mem, motion_highway)
-            x_gen = x_gen.to_global(placement=self.P0, sbp=BROADCAST)
-            mem = mem.to_global(placement=self.P0, sbp=BROADCAST)
+            x_gen = x_gen.to_global(placement=self.P0, sbp=frames.sbp)
+            mem = mem.to_global(placement=self.P0, sbp=frames.sbp)
             output.append(x_gen)
 
         output = flow.stack(output, dim=1)
