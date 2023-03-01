@@ -14,6 +14,8 @@ from oneflow import nn
 from models.SpatioTemporalLSTMCell import SpatioTemporalLSTMCell
 # import utils.logger as log
 
+B = flow.sbp.broadcast
+
 
 class PredRNN(nn.Module):
     def __init__(self, num_layers, num_hidden, patch_size,
@@ -49,12 +51,12 @@ class PredRNN(nn.Module):
 
         for i in range(self.num_layers):
             zeros = flow.zeros([batch, self.num_hidden[i], height, width], dtype=flow.float32,
-                               placement=frames.placement, sbp=frames.sbp)
+                               placement=frames.placement, sbp=B)
             h_t.append(zeros)
             c_t.append(zeros)
 
         memory = flow.zeros([batch, self.num_hidden[0], height, width],
-                            placement=frames.placement, sbp=frames.sbp)
+                            placement=frames.placement, sbp=B)
         for t in range(self.seq_len - 1):
 
             if t < self.input_len:
@@ -84,7 +86,7 @@ class PredRNNGraph(nn.Graph):
         self.loss_fn = flow.nn.MSELoss().to("cuda")
         self.add_optimizer(sgd)
 
-        # self.config.enable_zero(True, stage=2)
+        self.config.enable_zero(True, stage=2)
 
     def build(self, inputs, mask):
         out = self.model(inputs, mask)

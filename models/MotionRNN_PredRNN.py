@@ -137,7 +137,7 @@ class MotionRNNGraph(nn.Graph):
     def __init__(self, model, sgd, configs):
         super().__init__()
         self.model = model
-        self.loss_fn = flow.nn.MSELoss()
+        self.loss_fn = flow.nn.MSELoss().to("cuda")
         self.add_optimizer(sgd)
 
         # if configs.grad_acc > 1:

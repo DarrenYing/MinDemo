@@ -1,6 +1,8 @@
 """
 PredRNN
 无流水线并行
+python3 -m oneflow.distributed.launch --nproc_per_node=2 predrnn_base.py --run_mode eager
+
 """
 
 import os
@@ -13,7 +15,7 @@ import oneflow as flow
 from oneflow.utils import data
 from tqdm import tqdm
 import numpy as np
-from tensorboardX import SummaryWriter
+import time
 
 from models.PredRNN import PredRNN, PredRNNGraph
 from utils.dataset import FakeDataset
@@ -128,12 +130,13 @@ def train_eager():
     logger.print("model loaded")
 
     # train
+    t1 = time.time()
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
             batch_data = flow.from_numpy(reshape_patch(batch_data, args.patch_size))
-            batch_data = flow.tensor(batch_data, dtype=flow.float32, placement=P01, sbp=S0)
+            batch_data = flow.tensor(batch_data, dtype=flow.float32, placement=P01, sbp=B)
             mask = flow.from_numpy(schedule_sampling())
-            mask = flow.tensor(mask, dtype=flow.float32, placement=P01, sbp=S0)
+            mask = flow.tensor(mask, dtype=flow.float32, placement=P01, sbp=B)
 
             output = model(batch_data, mask)
             loss = loss_fn(output, batch_data[:, 1:])
@@ -143,7 +146,10 @@ def train_eager():
             loss.backward()
             sgd.step()
 
-            logger.print(loss)
+            # logger.print(loss)
+    t2 = time.time()
+    if flow.env.get_rank() == 0:
+        print(t2 - t1)
 
 
 if __name__ == '__main__':

@@ -20,8 +20,8 @@ from utils.loss_utils import LossRecoder
 
 BROADCAST = [flow.sbp.broadcast]
 S0 = flow.sbp.split(dim=0)
-P0 = flow.placement("cuda", ranks=[0])
-P1 = flow.placement("cuda", ranks=[2])
+P0 = flow.placement("cuda", ranks=[0, 1])
+P1 = flow.placement("cuda", ranks=[2, 3])
 
 
 parser = get_parser()
@@ -103,8 +103,8 @@ def train_graph():
 
     # init model and graph
     num_layers = 2
-    s0_model = Stage0Model(num_layers, num_hidden[:2], PATCH_SIZE)
-    s1_model = Stage1Model(num_layers, num_hidden[2:], PATCH_SIZE)
+    s0_model = Stage0Model(num_layers, num_hidden[:2], PATCH_SIZE, org_width=args.img_width)
+    s1_model = Stage1Model(num_layers, num_hidden[2:], PATCH_SIZE, org_width=args.img_width)
     model = PredRNNPipeline(s0_model, s1_model, args.total_length, args.input_length, num_hidden[-1],
                             PATCH_SIZE, [P0, P1])
     numel = sum([p.numel() for p in model.parameters()])
@@ -120,12 +120,13 @@ def train_graph():
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
             batch_data = flow.from_numpy(reshape_patch(batch_data, PATCH_SIZE))
-            batch_data = batch_data.to_global(placement=P0, sbp=BROADCAST)
-            # batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
-            #                          dtype=flow.float32, placement=P0,
-            #                          sbp=S0)
+            # batch_data = flow.tensor(batch_data, dtype=flow.float32, placement=P0, sbp=S0)
+            # batch_data = reshape_patch(batch_data, PATCH_SIZE)
+            batch_data = flow.tensor(batch_data,
+                                     dtype=flow.float32, placement=P0,
+                                     sbp=S0)
             _, mask = schedule_sampling(1.0, epoch)
-            mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=BROADCAST)
+            mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=S0)
 
             loss = graph_pipeline(batch_data, mask)
         #     loss_aver = loss.sum().item() / args.batch_size

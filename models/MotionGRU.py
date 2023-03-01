@@ -11,7 +11,7 @@ class Warp(nn.Module):
         self.conv = nn.Conv2d(inc, outc, kernel_size=neighbour, stride=neighbour, bias=None)
         self.warp_gate = nn.Conv2d(inc, neighbour * neighbour, kernel_size=3, padding=1, stride=1)
         nn.init.constant_(self.warp_gate.weight, 0)
-        # self.warp_gate.register_backward_hook(self._set_lr)
+        self.warp_gate.register_full_backward_hook(self._set_lr)
 
     @staticmethod
     def _set_lr(module, grad_input, grad_output):
@@ -126,15 +126,15 @@ class MotionGRU(nn.Module):
         super(MotionGRU, self).__init__()
         self.update = nn.Conv2d(in_channel + motion_hidden, motion_hidden, kernel_size=3, stride=1, padding=1)
         nn.init.constant_(self.update.weight, 0)
-        # self.update.register_backward_hook(self._set_lr)
+        self.update.register_full_backward_hook(self._set_lr)
 
         self.reset = nn.Conv2d(in_channel + motion_hidden, motion_hidden, kernel_size=3, stride=1, padding=1)
         nn.init.constant_(self.reset.weight, 0)
-        # self.reset.register_backward_hook(self._set_lr)
+        self.reset.register_full_backward_hook(self._set_lr)
 
         self.output = nn.Conv2d(in_channel + motion_hidden, motion_hidden, kernel_size=3, stride=1, padding=1)
         nn.init.constant_(self.output.weight, 0)
-        # self.output.register_backward_hook(self._set_lr)
+        self.output.register_full_backward_hook(self._set_lr)
 
         self.warp = Warp(in_channel, in_channel, neighbour)
 

@@ -166,12 +166,12 @@ class PredRNNPipeline(nn.Module):
 
             # conv-lstm layer
             h1, memory = self.s0_model(frame, memory)
-            h1 = h1.to_global(placement=self.P1, sbp=frames.sbp)
-            memory = memory.to_global(placement=self.P1, sbp=frames.sbp)
+            h1 = h1.to_global(placement=self.P1)
+            memory = memory.to_global(placement=self.P1)
             x_gen, memory = self.s1_model(h1, memory)
 
             x_gen = x_gen.to_global(placement=self.P0)
-            memory = memory.to_global(placement=self.P0, sbp=frames.sbp)
+            memory = memory.to_global(placement=self.P0)
             output.append(x_gen)
 
         output = flow.stack(output, dim=1)
