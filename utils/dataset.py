@@ -5,7 +5,7 @@ from oneflow.utils import data
 class FakeDataset(data.Dataset):
 
     def __getitem__(self, index):
-        return flow.randn(20, 1, 400, 400)
+        return flow.randn(20, 1, 200, 200)
 
     def __len__(self):
-        return 100
+        return 1000

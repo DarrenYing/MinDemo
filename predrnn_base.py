@@ -53,11 +53,13 @@ def train_graph():
     # load dataset
     train_dataset = FakeDataset()
 
+    sampler = data.DistributedSampler(train_dataset, drop_last=True)
+
     train_dataloader = flow.utils.data.DataLoader(
         dataset=train_dataset,
         batch_size=args.batch_size,
-        shuffle=True,
-        drop_last=True,
+        sampler=sampler,
+        drop_last=True
     )
 
     logger.print("dataset loaded")
@@ -85,10 +87,10 @@ def train_graph():
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
             batch_data = flow.from_numpy(reshape_patch(batch_data, args.patch_size))
-            batch_data = flow.tensor(batch_data, dtype=flow.float32, placement=P01, sbp=S0)
+            batch_data = batch_data.to_global(placement=P01, sbp=S0)
 
             mask = flow.from_numpy(schedule_sampling())
-            mask = flow.tensor(mask, dtype=flow.float32, placement=P01, sbp=S0)
+            mask = mask.to_global(placement=P01, sbp=S0)
 
             loss = base_graph(batch_data, mask)
             total_loss += loss.sum().item()

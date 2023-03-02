@@ -8,6 +8,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
 import oneflow as flow
+from oneflow.utils import data
 from tqdm import tqdm
 import numpy as np
 from tensorboardX import SummaryWriter
@@ -33,15 +34,13 @@ gpu_ids = [int(x) for x in os.environ['CUDA_VISIBLE_DEVICES'].split(',')]
 
 num_hidden = [64, 64, 64, 64]
 
-PATCH_SIZE = args.patch_size
-
 
 def schedule_sampling(eta, itr):
     zeros = np.zeros((args.batch_size,
                       args.total_length - args.input_length - 1,
-                      PATCH_SIZE ** 2 * args.img_channel,
-                      args.img_width // PATCH_SIZE,
-                      args.img_width // PATCH_SIZE,
+                      args.patch_size ** 2 * args.img_channel,
+                      args.img_width // args.patch_size,
+                      args.img_width // args.patch_size,
                       ))
     if not args.scheduled_sampling:
         return 0.0, zeros
@@ -87,11 +86,12 @@ def train_graph():
     # load dataset
     train_dataset = FakeDataset()
 
+    sampler = data.DistributedSampler(train_dataset, drop_last=True)
+
     train_dataloader = flow.utils.data.DataLoader(
         dataset=train_dataset,
         batch_size=args.batch_size,
-        shuffle=True,
-        drop_last=True,
+        sampler=sampler
     )
 
     logger.print("dataset loaded")
@@ -103,10 +103,10 @@ def train_graph():
 
     # init model and graph
     num_layers = 2
-    s0_model = Stage0Model(num_layers, num_hidden[:2], PATCH_SIZE, org_width=args.img_width)
-    s1_model = Stage1Model(num_layers, num_hidden[2:], PATCH_SIZE, org_width=args.img_width)
+    s0_model = Stage0Model(num_layers, num_hidden[:2], args.patch_size, org_width=args.img_width)
+    s1_model = Stage1Model(num_layers, num_hidden[2:], args.patch_size, org_width=args.img_width)
     model = PredRNNPipeline(s0_model, s1_model, args.total_length, args.input_length, num_hidden[-1],
-                            PATCH_SIZE, [P0, P1])
+                            args.patch_size, [P0, P1])
     numel = sum([p.numel() for p in model.parameters()])
     logger.print("model size: ", numel)
 
@@ -119,14 +119,17 @@ def train_graph():
     total_loss = 0
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
-            batch_data = flow.from_numpy(reshape_patch(batch_data, PATCH_SIZE))
+            batch_data = flow.from_numpy(reshape_patch(batch_data, args.patch_size))
             # batch_data = flow.tensor(batch_data, dtype=flow.float32, placement=P0, sbp=S0)
-            # batch_data = reshape_patch(batch_data, PATCH_SIZE)
-            batch_data = flow.tensor(batch_data,
-                                     dtype=flow.float32, placement=P0,
-                                     sbp=S0)
+            # batch_data = reshape_patch(batch_data, args.patch_size)
+            batch_data = batch_data.to_global(placement=P0, sbp=S0)
+            # batch_data = flow.tensor(batch_data,
+            #                          dtype=flow.float32, placement=P0,
+            #                          sbp=S0)
             _, mask = schedule_sampling(1.0, epoch)
-            mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=S0)
+            mask = flow.from_numpy(mask)
+            mask = mask.to_global(placement=P0, sbp=S0)
+            # mask = flow.tensor(mask, dtype=flow.float32, placement=P0, sbp=S0)
 
             loss = graph_pipeline(batch_data, mask)
         #     loss_aver = loss.sum().item() / args.batch_size
@@ -142,10 +145,10 @@ def train_graph():
 def evaluate_model():
     # init model and graph
     num_layers = 2
-    s0_model = Stage0Model(num_layers, num_hidden[:2], PATCH_SIZE)
-    s1_model = Stage1Model(num_layers, num_hidden[2:], PATCH_SIZE)
+    s0_model = Stage0Model(num_layers, num_hidden[:2], args.patch_size)
+    s1_model = Stage1Model(num_layers, num_hidden[2:], args.patch_size)
     model = PredRNNPipeline(s0_model, s1_model, args.total_length, args.input_length,
-                            num_hidden[-1], PATCH_SIZE, [P0, P1])
+                            num_hidden[-1], args.patch_size, [P0, P1])
     params = flow.load(args.checkpoint_path, global_src_rank=0)
     model.load_state_dict(params)
 
@@ -169,7 +172,7 @@ def evaluate_model():
 
     with flow.no_grad():
         for batch_idx, batch_data in enumerate(test_dataloader):
-            batch_data = flow.tensor(reshape_patch(batch_data, PATCH_SIZE),
+            batch_data = flow.tensor(reshape_patch(batch_data, args.patch_size),
                                      dtype=flow.float32, placement=P0,
                                      sbp=BROADCAST)
             _, mask = schedule_sampling(1.0, 0)
@@ -177,7 +180,7 @@ def evaluate_model():
             output = model(batch_data, mask)
             output = output.detach().cpu().to_local()
             batch_data = batch_data.detach().cpu().to_local()
-            # output_image(output, PATCH_SIZE, args.output_path)
+            # output_image(output, args.patch_size, args.output_path)
             loss_recoder.calc_scores(output, batch_data[:, 1:])
 
     loss_recoder.record()
