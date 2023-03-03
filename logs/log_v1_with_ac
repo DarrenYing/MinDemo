@@ -1,0 +1,518 @@
+Log file created at: 2023/03/03 16:42:17
+Running on machine: 58eb277d24f0
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20230303 16:42:17.984102 27869 env_global_objects_scope.cpp:168] Using rpc backend: gRPC
+I20230303 16:42:17.985221 27869 ctrl_server.cpp:40] CtrlServer listening on 0.0.0.0:33273
+I20230303 16:42:17.985421 27869 rank_info_bootstrap_server.cpp:64] RankInfoBootstrapServer listening on 0.0.0.0:29500
+I20230303 16:42:38.129719 27869 epoll_comm_network.cpp:63] CommNet:Epoll listening on 0.0.0.0:34447
+I20230303 16:42:40.318687 27869 version.cpp:22] OneFlow git version: 1442b30a
+I20230303 16:42:40.318794 27869 cuda_device_manager_factory.cpp:63] CUDA runtime version: 11.7
+I20230303 16:42:40.318850 27869 cuda_device_manager_factory.cpp:72] cuDNN version: 8.7.0
+I20230303 16:42:40.318859 27869 cuda_device_manager_factory.cpp:85] NCCL version: 2.12.10
+I20230303 16:42:41.259312 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:42:41.259428 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:42:41.259439 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:42:41.259457 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:42:41.264309 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:42:41.264353 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:42:41.264360 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:42:41.264366 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:42:46.471415 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_0-InsertPinnedIdentityOpPass
+I20230303 16:42:47.268057 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_0-InsertPinnedIdentityOpPass
+I20230303 16:42:47.268425 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 InsertPinnedIdentityOpPass","mem_rss":"2421.000000 MB","time_cost":"796 milliseconds"}
+I20230303 16:42:47.268458 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_1-EliminateDeadNodesPass
+I20230303 16:42:48.238567 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_1-EliminateDeadNodesPass
+I20230303 16:42:48.239750 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 EliminateDeadNodesPass","mem_rss":"2435.000000 MB","time_cost":"970 milliseconds"}
+I20230303 16:42:48.239785 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_2-NormalizationExponentialAverageAutoTickPass
+I20230303 16:42:48.239806 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_2-NormalizationExponentialAverageAutoTickPass
+I20230303 16:42:48.239979 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 NormalizationExponentialAverageAutoTickPass","mem_rss":"2435.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:48.239993 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_3-AutoMixedPrecision
+I20230303 16:42:48.240003 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_3-AutoMixedPrecision
+I20230303 16:42:48.240041 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AutoMixedPrecision","mem_rss":"2435.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:48.240051 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_4-PruneAmpWhiteIdentityOpPass
+I20230303 16:42:48.241364 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_4-PruneAmpWhiteIdentityOpPass
+I20230303 16:42:48.241468 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 PruneAmpWhiteIdentityOpPass","mem_rss":"2435.000000 MB","time_cost":"1 milliseconds"}
+I20230303 16:42:48.241504 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_5-OptimizerPlacementOptimizationPass
+I20230303 16:42:48.977469 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_5-OptimizerPlacementOptimizationPass
+I20230303 16:42:48.978375 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 OptimizerPlacementOptimizationPass","mem_rss":"2435.000000 MB","time_cost":"736 milliseconds"}
+I20230303 16:42:48.978400 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_6-FuseAddToOutputPass
+I20230303 16:42:48.978412 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_6-FuseAddToOutputPass
+I20230303 16:42:48.978472 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseAddToOutputPass","mem_rss":"2435.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:48.978482 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_7-IRRoundTripBeforeAD
+I20230303 16:42:48.978516 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_7-IRRoundTripBeforeAD
+I20230303 16:42:48.978546 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 IRRoundTripBeforeAD","mem_rss":"2435.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:48.978555 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_8-DynamicLossScaleSchedulePass
+I20230303 16:42:48.978564 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_8-DynamicLossScaleSchedulePass
+I20230303 16:42:48.978593 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DynamicLossScaleSchedulePass","mem_rss":"2435.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:48.978600 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_9-AutoTrainStep
+I20230303 16:42:49.536015 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_9-AutoTrainStep
+I20230303 16:42:49.536926 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AutoTrainStep","mem_rss":"2436.000000 MB","time_cost":"557 milliseconds"}
+I20230303 16:42:49.536952 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_10-AutoLearningRate
+I20230303 16:42:50.092351 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_10-AutoLearningRate
+I20230303 16:42:50.093253 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AutoLearningRate","mem_rss":"2436.000000 MB","time_cost":"555 milliseconds"}
+I20230303 16:42:50.093277 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_11-QuantAwareTraining
+I20230303 16:42:50.093297 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_11-QuantAwareTraining
+I20230303 16:42:50.093381 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 QuantAwareTraining","mem_rss":"2436.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:50.093389 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_12-GenerateOptimizerOpConfs
+I20230303 16:42:50.672118 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_12-GenerateOptimizerOpConfs
+I20230303 16:42:50.673056 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 GenerateOptimizerOpConfs","mem_rss":"2436.000000 MB","time_cost":"578 milliseconds"}
+I20230303 16:42:50.673081 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_13-PrunePinnedIdentityOpPass
+I20230303 16:42:51.341642 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_13-PrunePinnedIdentityOpPass
+I20230303 16:42:51.341850 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 PrunePinnedIdentityOpPass","mem_rss":"2436.000000 MB","time_cost":"668 milliseconds"}
+I20230303 16:42:51.341868 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_14-ReplaceEmbeddingOps
+I20230303 16:42:51.342461 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_14-ReplaceEmbeddingOps
+I20230303 16:42:51.343323 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 ReplaceEmbeddingOps","mem_rss":"2436.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:51.343338 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_15-SequentialOneEmbeddingOpsPass
+I20230303 16:42:51.343348 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_15-SequentialOneEmbeddingOpsPass
+I20230303 16:42:51.343384 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 SequentialOneEmbeddingOpsPass","mem_rss":"2436.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:51.343390 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_16-FuseEmbeddingShuffleInteractionPass
+I20230303 16:42:51.343401 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_16-FuseEmbeddingShuffleInteractionPass
+I20230303 16:42:51.343432 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseEmbeddingShuffleInteractionPass","mem_rss":"2436.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:51.343441 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_17-FuseBCEReduceMeanFwBwPass
+I20230303 16:42:51.343449 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_17-FuseBCEReduceMeanFwBwPass
+I20230303 16:42:51.343478 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseBCEReduceMeanFwBwPass","mem_rss":"2436.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:51.343487 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_18-AddSspVariableProxy
+I20230303 16:42:51.343497 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_18-AddSspVariableProxy
+I20230303 16:42:51.343529 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AddSspVariableProxy","mem_rss":"2436.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:51.343538 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_19-CheckpointingPass
+I20230303 16:42:52.080220 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_19-CheckpointingPass
+I20230303 16:42:52.081326 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 CheckpointingPass","mem_rss":"2437.000000 MB","time_cost":"736 milliseconds"}
+I20230303 16:42:52.081352 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_20-CudnnFusedNormalizationAddReluPass
+I20230303 16:42:52.082692 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_20-CudnnFusedNormalizationAddReluPass
+I20230303 16:42:52.083652 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 CudnnFusedNormalizationAddReluPass","mem_rss":"2437.000000 MB","time_cost":"1 milliseconds"}
+I20230303 16:42:52.083667 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_21-PruneCastToStaticShapeOpsPass
+I20230303 16:42:53.053404 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_21-PruneCastToStaticShapeOpsPass
+I20230303 16:42:53.054526 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 PruneCastToStaticShapeOpsPass","mem_rss":"2475.000000 MB","time_cost":"969 milliseconds"}
+I20230303 16:42:53.054550 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_22-IRRoundTrip
+I20230303 16:42:53.054592 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_22-IRRoundTrip
+I20230303 16:42:53.055352 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 IRRoundTrip","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:53.055366 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_23-FuseAddToOutputPass1
+I20230303 16:42:53.055373 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_23-FuseAddToOutputPass1
+I20230303 16:42:53.055411 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseAddToOutputPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:53.055418 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_24-FuseConsecutiveAddPass
+I20230303 16:42:54.023027 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_24-FuseConsecutiveAddPass
+I20230303 16:42:54.024178 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseConsecutiveAddPass","mem_rss":"2475.000000 MB","time_cost":"967 milliseconds"}
+I20230303 16:42:54.024204 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_25-IndexedSlicesOptimizerRewritePass
+I20230303 16:42:54.024217 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_25-IndexedSlicesOptimizerRewritePass
+I20230303 16:42:54.025265 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 IndexedSlicesOptimizerRewritePass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:54.025281 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_26-SplitSparseSoftmaxCrossEntropyOpPass
+I20230303 16:42:54.025857 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_26-SplitSparseSoftmaxCrossEntropyOpPass
+I20230303 16:42:54.026432 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 SplitSparseSoftmaxCrossEntropyOpPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:54.026443 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_27-DoParallelCastBeforeWideningTypeCast
+I20230303 16:42:54.828648 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_27-DoParallelCastBeforeWideningTypeCast
+I20230303 16:42:54.829816 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DoParallelCastBeforeWideningTypeCast","mem_rss":"2475.000000 MB","time_cost":"802 milliseconds"}
+I20230303 16:42:54.829840 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_28-FuseCastScalePass
+I20230303 16:42:54.829854 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_28-FuseCastScalePass
+I20230303 16:42:54.830859 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseCastScalePass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:54.830875 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_29-PruneParallelCastOpsPass
+I20230303 16:42:55.685384 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_29-PruneParallelCastOpsPass
+I20230303 16:42:55.686563 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 PruneParallelCastOpsPass","mem_rss":"2475.000000 MB","time_cost":"854 milliseconds"}
+I20230303 16:42:55.686589 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_30-FuseUpdateOpsPass
+I20230303 16:42:55.686601 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_30-FuseUpdateOpsPass
+I20230303 16:42:55.687623 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseUpdateOpsPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.687649 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_31-FuseModelUpdateCastOpsPass
+I20230303 16:42:55.687670 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_31-FuseModelUpdateCastOpsPass
+I20230303 16:42:55.688010 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FuseModelUpdateCastOpsPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.688019 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_32-MultiTensorModelUpdatePass
+I20230303 16:42:55.688026 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_32-MultiTensorModelUpdatePass
+I20230303 16:42:55.688059 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 MultiTensorModelUpdatePass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.688066 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_33-FixPipelineStageIdPass
+I20230303 16:42:55.688073 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_33-FixPipelineStageIdPass
+I20230303 16:42:55.688501 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 FixPipelineStageIdPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.688513 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_34-PipelineBufferPass
+I20230303 16:42:55.688519 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_34-PipelineBufferPass
+I20230303 16:42:55.688552 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 PipelineBufferPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.688560 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_35-AutoParallelPass
+I20230303 16:42:55.688565 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_35-AutoParallelPass
+I20230303 16:42:55.688596 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AutoParallelPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.688602 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_36-DelayVariableOpExecutionPass
+I20230303 16:42:55.688608 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_36-DelayVariableOpExecutionPass
+I20230303 16:42:55.688637 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DelayVariableOpExecutionPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.688643 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_37-CutlassConvTuningWarmupPass
+I20230303 16:42:55.688648 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_37-CutlassConvTuningWarmupPass
+I20230303 16:42:55.688684 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 CutlassConvTuningWarmupPass","mem_rss":"2475.000000 MB","time_cost":"0 milliseconds"}
+I20230303 16:42:55.688691 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_38-DumpVariableInfoPass
+I20230303 16:42:56.493454 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_38-DumpVariableInfoPass
+I20230303 16:42:56.494678 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DumpVariableInfoPass","mem_rss":"2475.000000 MB","time_cost":"804 milliseconds"}
+I20230303 16:42:56.494707 27869 job_build_and_infer_ctx.cpp:948] ConvLSTMGraph_0 start compiling with pass pass_cnt_39-DumpBlobParallelConfPass
+I20230303 16:42:57.301144 27869 job_build_and_infer_ctx.cpp:962] ConvLSTMGraph_0 finish compiling with pass pass_cnt_39-DumpBlobParallelConfPass
+I20230303 16:42:57.302300 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DumpBlobParallelConfPass","mem_rss":"2475.000000 MB","time_cost":"806 milliseconds"}
+I20230303 16:42:57.320120 27869 cost_util.h:98] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 OptimizationLogicalGraph","mem_rss":"2475.000000 MB","time_cost":"11 seconds"}
+I20230303 16:43:01.556123 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 GroupBoxingByDstParallel","mem_rss":"2609.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:02.497573 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 BoxingWithMiddleNodes","mem_rss":"2609.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:03.461138 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 SetCtrl","mem_rss":"2609.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:04.508461 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AutoPrependTick","mem_rss":"2609.000000 MB","time_cost":"1 seconds"}
+I20230303 16:43:05.422827 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AddTickForTimeShape","mem_rss":"2609.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:06.604079 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AutoSourceAndSinkTick","mem_rss":"2615.000000 MB","time_cost":"1 seconds"}
+I20230303 16:43:07.563313 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 CriticalSectionTick","mem_rss":"2615.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:07.564687 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 SystemOpFillJobNamePass","mem_rss":"2615.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:08.542428 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DumpBlobParallelConfPass","mem_rss":"2615.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:09.839426 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 InsertNcclLogicalOpPass","mem_rss":"2623.000000 MB","time_cost":"1 seconds"}
+I20230303 16:43:10.941679 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DumpBlobParallelConfPass","mem_rss":"2623.000000 MB","time_cost":"1 seconds"}
+I20230303 16:43:13.132651 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 CheckOpGraph","mem_rss":"2623.000000 MB","time_cost":"2 seconds"}
+I20230303 16:43:13.133762 27869 cost_util.h:98] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 CompleteJob","mem_rss":"2623.000000 MB","time_cost":"14 seconds"}
+I20230303 16:43:14.479612 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 NewOpGraph","mem_rss":"2647.000000 MB","time_cost":"1 seconds"}
+I20230303 16:43:16.028770 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 BuildTaskGraph","mem_rss":"2805.000000 MB","time_cost":"1 seconds"}
+I20230303 16:43:17.444880 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 AddTaskToPlan","mem_rss":"2963.000000 MB","time_cost":"1 seconds"}
+I20230303 16:43:17.720521 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 InferMemShare","mem_rss":"2967.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:18.180758 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 GenMemBlockAndChunk","mem_rss":"2973.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:21.070930 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 LogPlan","mem_rss":"2997.000000 MB","time_cost":"2 seconds"}
+I20230303 16:43:21.103286 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 GenRegisterHint","mem_rss":"2997.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:21.104657 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 GenCollectiveBoxingPlan","mem_rss":"2997.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:21.124506 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 DumpCtrlRegstInfoToPlan","mem_rss":"2997.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:21.154318 27869 plan_util.cpp:1139] 
+ Graph name ConvLSTMGraph_0 in Rank: 0, Device: 0 needs to allocate [ 10623.3 MiB ] device memory. 
+   In general, Chunk id: 0  memory is [ 10085.4 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 407.047 MiB ] with mem_block_num = 3871
+        Eager Variable Tensor total memory is [ 130.879 MiB ] with mem_block_num = 81
+I20230303 16:43:21.154783 27869 plan_util.cpp:1139] 
+ Graph name ConvLSTMGraph_0 in Rank: 1, Device: 1 needs to allocate [ 10623.3 MiB ] device memory. 
+   In general, Chunk id: 1  memory is [ 10085.4 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 407.047 MiB ] with mem_block_num = 3871
+        Eager Variable Tensor total memory is [ 130.879 MiB ] with mem_block_num = 81
+I20230303 16:43:21.155210 27869 plan_util.cpp:1139] 
+ Graph name ConvLSTMGraph_0 in Rank: 2, Device: 2 needs to allocate [ 10688.2 MiB ] device memory. 
+   In general, Chunk id: 2  memory is [ 10271.3 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 284.163 MiB ] with mem_block_num = 3907
+        Eager Variable Tensor total memory is [ 132.735 MiB ] with mem_block_num = 84
+I20230303 16:43:21.155634 27869 plan_util.cpp:1139] 
+ Graph name ConvLSTMGraph_0 in Rank: 3, Device: 3 needs to allocate [ 10688.2 MiB ] device memory. 
+   In general, Chunk id: 3  memory is [ 10271.3 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 284.163 MiB ] with mem_block_num = 3907
+        Eager Variable Tensor total memory is [ 132.735 MiB ] with mem_block_num = 84
+I20230303 16:43:21.546355 27869 cost_util.h:100] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 GenMemAndLightPlanLog","mem_rss":"2997.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:21.547272 27869 cost_util.h:98] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 CompilePlan","mem_rss":"2997.000000 MB","time_cost":"8 seconds"}
+I20230303 16:43:22.343039 27869 cost_util.h:98] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 SyncPlan","mem_rss":"3000.000000 MB","time_cost":"0 seconds"}
+I20230303 16:43:22.685593 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.685671 27869 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 16:43:22.685691 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.685720 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.687793 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.687834 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.687851 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.687876 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.689123 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.689152 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.689169 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.689182 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.690526 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.690551 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.690567 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.690582 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.691139 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.691164 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.691201 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.691215 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.692574 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.692602 27869 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 16:43:22.692617 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.692629 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.693023 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.693034 27869 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 16:43:22.693042 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.693049 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.693851 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.693863 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.693872 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.693878 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.694667 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.694686 27869 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 16:43:22.694695 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.694701 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.695470 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.695482 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.695492 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.695498 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.695955 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.695966 27869 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 16:43:22.695976 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.695981 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.696453 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.696465 27869 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 16:43:22.696475 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.696480 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.697193 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.697208 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.697216 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.697222 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.697683 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.697695 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.697710 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.697716 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.698169 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.698181 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.698189 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.698194 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.698648 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.698659 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.698668 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.698673 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.699891 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.699906 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.699914 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.699920 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.700770 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.700783 27869 eager_boxing_logger.cpp:43] Logical shape: (256,16,5,5)
+I20230303 16:43:22.700791 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.700798 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.701124 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.701138 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.701145 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.701151 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.701498 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.701507 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.701516 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.701524 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.702633 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.702647 27869 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 16:43:22.702656 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.702661 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:22.703064 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.703076 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.703084 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.703090 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.708518 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.708565 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.708600 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.708613 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[2, 3]) -> oneflow.placement(type="cuda", ranks=[2, 3])
+I20230303 16:43:22.709406 27869 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 16:43:22.709431 27869 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 16:43:22.709446 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 16:43:22.709457 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:23.101466 27869 thread_manager.cpp:53]  Actor thread: 4194313 created.
+I20230303 16:43:23.101555 27869 thread_manager.cpp:53]  Actor thread: 4194354 created.
+I20230303 16:43:23.101605 27869 thread_manager.cpp:53]  Actor thread: 4194355 created.
+I20230303 16:43:23.103456 27869 thread_manager.cpp:53]  Actor thread: 8388611 created.
+I20230303 16:43:23.103518 27869 thread_manager.cpp:53]  Actor thread: 4194312 created.
+I20230303 16:43:23.103555 27869 thread_manager.cpp:53]  Actor thread: 4194357 created.
+I20230303 16:43:23.103595 27869 thread_manager.cpp:53]  Actor thread: 4194353 created.
+I20230303 16:43:23.103638 27869 thread_manager.cpp:53]  Actor thread: 4194314 created.
+I20230303 16:43:23.103677 27869 thread_manager.cpp:53]  Actor thread: 4194306 created.
+I20230303 16:43:23.103719 27869 thread_manager.cpp:53]  Actor thread: 4194307 created.
+I20230303 16:43:23.103760 27869 thread_manager.cpp:53]  Actor thread: 4194305 created.
+I20230303 16:43:23.103811 27869 thread_manager.cpp:53]  Actor thread: 4194304 created.
+I20230303 16:43:23.104056 27869 thread_manager.cpp:53]  Actor thread: 4194356 created.
+I20230303 16:43:23.104185 27869 thread_manager.cpp:53]  Actor thread: 4194308 created.
+I20230303 16:43:23.107264 27869 thread_manager.cpp:53]  Actor thread: 8388609 created.
+I20230303 16:43:23.107401 27869 thread_manager.cpp:53]  Actor thread: 4194310 created.
+I20230303 16:43:23.110353 27869 thread_manager.cpp:53]  Actor thread: 8388608 created.
+I20230303 16:43:23.110452 27869 thread_manager.cpp:53]  Actor thread: 4194309 created.
+I20230303 16:43:23.110515 27869 thread_manager.cpp:53]  Actor thread: 4194352 created.
+I20230303 16:43:23.110587 27869 thread_manager.cpp:53]  Actor thread: 4194311 created.
+I20230303 16:43:23.115450 27869 thread_manager.cpp:53]  Actor thread: 8388610 created.
+I20230303 16:43:24.675843 27869 cost_util.h:98] [count log]{"loc":"[GraphCompile]ConvLSTMGraph_0 InitRuntime","mem_rss":"3674.000000 MB","time_cost":"2 seconds"}
+I20230303 16:43:25.212292 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:25.212343 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:25.212350 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:25.212364 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:26.470980 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:26.471024 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:26.471032 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:26.471037 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:26.787788 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:26.787871 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:26.787882 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:26.787889 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:26.791653 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:26.791697 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:26.791704 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:26.791709 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:26.793709 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:26.793730 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:26.793737 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:26.793745 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:27.822034 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:27.822110 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:27.822139 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:27.822160 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:28.119482 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:28.119575 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:28.119607 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:28.119629 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:28.136377 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:28.136430 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:28.136438 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:28.136444 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:28.138113 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:28.138134 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:28.138140 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:28.138145 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:29.157143 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:29.157184 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:29.157192 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:29.157198 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:29.400362 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:29.400404 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:29.400413 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:29.400419 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:29.414661 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:29.414701 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:29.414719 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:29.414731 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:29.416873 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:29.416927 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:29.416946 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:29.416960 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:30.440922 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:30.440979 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:30.440994 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:30.441004 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:30.695577 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:30.695631 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:30.695641 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:30.695647 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:30.703321 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:30.703366 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:30.703387 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:30.703403 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:30.705462 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:30.705498 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:30.705511 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:30.705520 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:31.722555 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:31.722622 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:31.722645 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:31.722671 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:31.978323 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:31.978374 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:31.978389 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:31.978395 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:31.985921 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:31.986025 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:31.986050 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:31.986057 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:31.987573 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:31.987596 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:31.987607 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:31.987617 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:33.005395 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:33.005461 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:33.005486 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:33.005506 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:33.282383 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:33.282420 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:33.282430 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:33.282438 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:33.288517 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:33.288602 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:33.288616 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:33.288625 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:33.289908 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:33.289929 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:33.289937 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:33.289942 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:34.311053 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:34.311112 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:34.311129 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:34.311142 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:34.564252 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:34.564365 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:34.564386 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:34.564399 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:34.569259 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:34.569386 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:34.569407 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:34.569451 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:34.571246 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:34.571286 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:34.571303 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:34.571316 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:35.599208 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:35.599273 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:35.599289 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:35.599303 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:35.846375 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:35.846462 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:35.846472 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:35.846479 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:35.850324 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:35.850355 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:35.850363 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:35.850369 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:35.852392 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:35.852424 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:35.852437 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:35.852447 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:36.878386 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:36.878454 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:36.878473 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:36.878490 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:37.149009 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:37.149046 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:37.149055 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:37.149061 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:37.155834 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:37.155867 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:37.155875 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:37.155881 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:37.157671 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:37.157697 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:37.157704 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:37.157709 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:38.188501 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:38.188566 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:38.188585 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:38.188598 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:38.442422 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:38.442484 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:38.442497 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:38.442504 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:38.449460 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:38.449525 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:38.449539 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:38.449549 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:38.451225 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:38.451252 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:38.451263 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:38.451272 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:39.472077 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:39.472141 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:39.472162 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:39.472175 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:39.745821 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:39.745878 27869 eager_boxing_logger.cpp:43] Logical shape: (8,20,16,100,100)
+I20230303 16:43:39.745890 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:39.745901 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:39.750545 27869 eager_boxing_logger.cpp:42] Boxing route: naive-s-to-s
+I20230303 16:43:39.750648 27869 eager_boxing_logger.cpp:43] Logical shape: (8,9,16,100,100)
+I20230303 16:43:39.750659 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (S(0)) -> (S(0))
+I20230303 16:43:39.750666 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1])
+I20230303 16:43:39.752864 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:39.752944 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:39.752964 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:39.752976 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:40.778481 27869 eager_boxing_logger.cpp:42] Boxing route: ccl-p-to-b -> asymmetric-broadcast
+I20230303 16:43:40.778560 27869 eager_boxing_logger.cpp:43] Logical shape: ()
+I20230303 16:43:40.778584 27869 eager_boxing_logger.cpp:44] Altered state of sbp: (P) -> (B) -> (B)
+I20230303 16:43:40.778601 27869 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 16:43:41.197053 27869 nn_graph.cpp:93] Graph destructor Try to close c nn graph name ConvLSTMGraph_0.
+I20230303 16:43:41.197108 27869 nn_graph.cpp:99] Try to close c nn graph name ConvLSTMGraph_0.
+I20230303 16:43:41.651365 27869 thread_manager.cpp:67]  Actor thread: 4194355 finished when the graph is destructed.
+I20230303 16:43:41.651587 27869 thread_manager.cpp:67]  Actor thread: 4194353 finished when the graph is destructed.
+I20230303 16:43:41.651721 27869 thread_manager.cpp:67]  Actor thread: 4194356 finished when the graph is destructed.
+I20230303 16:43:41.651865 27869 nn_graph.cpp:103] Finish close c nn graph name ConvLSTMGraph_0.
+I20230303 16:43:42.684891 27869 multi_client_session_context.cpp:147] Try to delete multi client session context.
+I20230303 16:43:42.695227 27869 thread_manager.cpp:28]  Actor thread: 8388610 finished when process exits.
+I20230303 16:43:42.699452 27869 thread_manager.cpp:28]  Actor thread: 4194311 finished when process exits.
+I20230303 16:43:42.699872 27869 thread_manager.cpp:28]  Actor thread: 4194352 finished when process exits.
+I20230303 16:43:42.702606 27869 thread_manager.cpp:28]  Actor thread: 4194309 finished when process exits.
+I20230303 16:43:42.968991 27869 thread_manager.cpp:28]  Actor thread: 8388608 finished when process exits.
+I20230303 16:43:42.972941 27869 thread_manager.cpp:28]  Actor thread: 4194310 finished when process exits.
+I20230303 16:43:42.976871 27869 thread_manager.cpp:28]  Actor thread: 8388609 finished when process exits.
+I20230303 16:43:42.978291 27869 thread_manager.cpp:28]  Actor thread: 4194308 finished when process exits.
+I20230303 16:43:42.978514 27869 thread_manager.cpp:28]  Actor thread: 4194313 finished when process exits.
+I20230303 16:43:42.982311 27869 thread_manager.cpp:28]  Actor thread: 4194354 finished when process exits.
+I20230303 16:43:42.984709 27869 thread_manager.cpp:28]  Actor thread: 4194304 finished when process exits.
+I20230303 16:43:43.002049 27869 thread_manager.cpp:28]  Actor thread: 8388611 finished when process exits.
+I20230303 16:43:43.007755 27869 thread_manager.cpp:28]  Actor thread: 4194312 finished when process exits.
+I20230303 16:43:43.010260 27869 thread_manager.cpp:28]  Actor thread: 4194357 finished when process exits.
+I20230303 16:43:43.013546 27869 thread_manager.cpp:28]  Actor thread: 4194305 finished when process exits.
+I20230303 16:43:43.015566 27869 thread_manager.cpp:28]  Actor thread: 4194314 finished when process exits.
+I20230303 16:43:43.018258 27869 thread_manager.cpp:28]  Actor thread: 4194306 finished when process exits.
+I20230303 16:43:43.022423 27869 thread_manager.cpp:28]  Actor thread: 4194307 finished when process exits.
+I20230303 16:43:43.612531 27869 multi_client_session_context.cpp:173] Finish delete multi client session context.
+I20230303 16:43:43.658879 27869 epoll_comm_network.cpp:89] CommNet Thread 0 finish
+I20230303 16:43:43.661535 27869 epoll_comm_network.cpp:89] CommNet Thread 1 finish
+I20230303 16:43:43.661904 27869 epoll_comm_network.cpp:89] CommNet Thread 2 finish
+I20230303 16:43:43.667790 27869 epoll_comm_network.cpp:89] CommNet Thread 3 finish
