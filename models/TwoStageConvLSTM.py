@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.
 
 import oneflow as flow
 from oneflow import nn
-
+from oneflow.nn.graph import GraphModule
 from models.LSTMCell import LSTMCell
 
 BROADCAST = flow.sbp.broadcast
@@ -158,6 +158,7 @@ class ConvLSTMPipeline(nn.Module):
             #     frame = mask_true[:, t - self.input_len] * frames[:, t] + \
             #             (1 - mask_true[:, t - self.input_len]) * x_gen
 
+
             # conv-lstm layer
             h1 = self.s0_model(frame)
             h1 = h1.to_global(placement=self.P1)
@@ -176,10 +177,16 @@ class ConvLSTMGraph(nn.Graph):
         self.P0 = placementCfg[0]
         self.P1 = placementCfg[1]
         self.module_pipeline = pipeline
-        self.module_pipeline.s0_model.config.set_stage(stage_id=0, placement=self.P0)
-        self.module_pipeline.s1_model.config.set_stage(stage_id=1, placement=self.P1)
+        self.module_pipeline.s0_model.to(GraphModule).set_stage(stage_id=0, placement=self.P0)
+        self.module_pipeline.s1_model.to(GraphModule).set_stage(stage_id=1, placement=self.P1)
         self.loss_fn = flow.nn.MSELoss()
         self.add_optimizer(sgd)
+
+        # 开启zero
+        self.config.enable_zero(True, stage=2)
+
+        # 开启梯度累加
+        # self.config.set_gradient_accumulation_steps(2)
 
     def build(self, inputs, mask):
         out = self.module_pipeline(inputs, mask)

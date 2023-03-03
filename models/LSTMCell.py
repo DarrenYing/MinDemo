@@ -3,7 +3,7 @@ import oneflow.nn as nn
 
 
 class LSTMCell(nn.Module):
-    def __init__(self, in_channel, num_hidden, width, filter_size, stride):
+    def __init__(self, in_channel, num_hidden: int, width: int, filter_size, stride):
         super(LSTMCell, self).__init__()
 
         self.num_hidden = num_hidden
@@ -11,11 +11,13 @@ class LSTMCell(nn.Module):
         self._forget_bias = 1.0
         self.conv_x = nn.Sequential(
             nn.Conv2d(in_channel, num_hidden * 4, kernel_size=filter_size, stride=stride, padding=self.padding, groups=1),
-            nn.LayerNorm([num_hidden * 4, width, width])
+            # nn.LayerNorm((num_hidden * 4, width, width))
+            nn.LayerNorm(flow.Size([num_hidden * 4, int(width), int(width)]))
         )
         self.conv_h = nn.Sequential(
             nn.Conv2d(num_hidden, num_hidden * 4, kernel_size=filter_size, stride=stride, padding=self.padding, groups=1),
-            nn.LayerNorm([num_hidden * 4, width, width])
+            # nn.LayerNorm([num_hidden * 4, width, width])
+            nn.LayerNorm(flow.Size([num_hidden * 4, int(width), int(width)]))
         )
 
     def forward(self, x_t, h_t, c_t):

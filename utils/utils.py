@@ -78,10 +78,10 @@ def get_parser():
                         default=4,
                         type=int,
                         help='image patch size')
-    parser.add_argument('--input_length', type=int, default=2)
-    parser.add_argument('--total_length', type=int, default=4)
-    parser.add_argument('--img_height', type=int, default=200)
-    parser.add_argument('--img_width', type=int, default=200)
+    parser.add_argument('--input_length', type=int, default=10)
+    parser.add_argument('--total_length', type=int, default=20)
+    parser.add_argument('--img_height', type=int, default=400)
+    parser.add_argument('--img_width', type=int, default=400)
     parser.add_argument('--img_channel', type=int, default=1)
     parser.add_argument('--filter_size', type=int, default=5)
     parser.add_argument('--stride', type=int, default=1)

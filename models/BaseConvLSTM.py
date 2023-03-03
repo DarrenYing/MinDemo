@@ -47,17 +47,21 @@ class BaseConvLSTM(nn.Module):
         c_t = []
 
         for i in range(self.num_layers):
-            zeros = flow.zeros([batch, self.num_hidden[i], height, width], dtype=flow.float32).to(frames.device)
+            zeros = flow.zeros([batch, self.num_hidden[i], height, width], dtype=flow.float32,
+                               placement=frames.placement,
+                               sbp=frames.sbp
+                               )
             h_t.append(zeros)
             c_t.append(zeros)
 
         for t in range(self.seq_len - 1):
 
-            if t < self.input_len:
-                frame = frames[:, t]  # t是length维度
-            else:
-                frame = mask[:, t - self.input_len] * frames[:, t] + \
-                      (1 - mask[:, t - self.input_len]) * x_gen
+            frame = frames[:, t]
+            # if t < self.input_len:
+            #     frame = frames[:, t]  # t是length维度
+            # else:
+            #     frame = mask[:, t - self.input_len] * frames[:, t] + \
+            #           (1 - mask[:, t - self.input_len]) * x_gen
 
             # conv-lstm layer
             h_t[0], c_t[0] = self.cell_list[0](frame, h_t[0], c_t[0])
@@ -79,14 +83,8 @@ class BaseConvLSTMGraph(nn.Graph):
         self.loss_fn = flow.nn.MSELoss()
         self.add_optimizer(sgd)
 
-        if configs.grad_acc > 1:
-            self.config.set_gradient_accumulation_steps(configs.grad_acc)
-        if configs.amp:
-            self.config.enable_amp(True)
-        if configs.encoder_ac:
-            self.module_pipeline.s0_model.config.activation_checkpointing = True  # 开启激活重计算
-        if configs.decoder_ac:
-            self.module_pipeline.s1_model.config.activation_checkpointing = True  # 开启激活重计算
+        # 开启zero
+        self.config.enable_zero(True, stage=2)
 
     def build(self, inputs, mask):
         out = self.model(inputs, mask)

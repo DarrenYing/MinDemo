@@ -1,7 +1,7 @@
 """
-ConvLSTM dp2+pp2 测试
+ConvLSTM dp4 测试
 
-python3 -m oneflow.distributed.launch --nproc_per_node 4 convlstm_2stage.py
+python3 -m oneflow.distributed.launch --nproc_per_node 4 convlstm_dp.py
 """
 
 
@@ -15,16 +15,14 @@ from oneflow.utils import data
 from tqdm import tqdm
 import numpy as np
 
-from models.TwoStageConvLSTM import ConvLSTMPipeline, ConvLSTMGraph, Stage0Model, Stage1Model
+from models.BaseConvLSTM import BaseConvLSTM, BaseConvLSTMGraph
 from utils.dataset import FakeDataset
 import utils.logger as log
 from utils.utils import reshape_patch, get_parser
 
 BROADCAST = [flow.sbp.broadcast]
-S0 = flow.sbp.split(dim=0)
-P01 = flow.placement("cuda", ranks=[0, 1])
-P23 = flow.placement("cuda", ranks=[2, 3])
 P0123 = flow.placement("cuda", ranks=[0, 1, 2, 3])
+DEVICE = "cuda" if flow.cuda.is_available() else "cpu"
 
 
 parser = get_parser()
@@ -71,29 +69,28 @@ def train_graph():
     totol_batch = len(train_dataloader)
 
     # init model and graph
-    num_layers = 2
-    s0_model = Stage0Model(num_layers, num_hidden[:2], args)
-    s1_model = Stage1Model(num_layers, num_hidden[2:], args)
-    model = ConvLSTMPipeline(s0_model, s1_model, args, [P01, P23])
+    num_layers = 4
+    model = BaseConvLSTM(num_layers, num_hidden, args).to(DEVICE)
     numel = sum([p.numel() for p in model.parameters()])
     logger.print("model size: ", numel)
+
+    model = model.to_global(placement=P0123, sbp=BROADCAST)
 
     sgd = flow.optim.Adam(model.parameters(), lr=0.001)
     # sgd = flow.optim.SGD(model.parameters(), lr=0.001)
 
-    graph_pipeline = ConvLSTMGraph(model, sgd, args, [P01, P23])
+    graph_pipeline = BaseConvLSTMGraph(model, sgd, args)
     graph_pipeline.debug(1)
 
     # train
-    # loss_fn = flow.nn.MSELoss()
     for epoch in range(1):
         for batch_idx, batch_data in enumerate(train_dataloader, 1):
             batch_data = flow.from_numpy(reshape_patch(batch_data, args.patch_size))
-            batch_data = batch_data.to_global(placement=P0123, sbp=S0).to_global(placement=P01, sbp=S0)
+            batch_data = batch_data.to_global(placement=P0123, sbp=BROADCAST)
 
             _, mask = schedule_sampling(1.0, epoch)
             mask = flow.from_numpy(mask)
-            mask = mask.to_global(placement=P0123, sbp=S0).to_global(placement=P01, sbp=S0)
+            mask = mask.to_global(placement=P0123, sbp=BROADCAST)
 
             loss = graph_pipeline(batch_data, mask)
             print(loss)
