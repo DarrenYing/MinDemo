@@ -1,0 +1,900 @@
+Log file created at: 2023/03/03 15:33:07
+Running on machine: 58eb277d24f0
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20230303 15:33:07.691478 25032 env_global_objects_scope.cpp:168] Using rpc backend: gRPC
+I20230303 15:33:07.692622 25032 ctrl_server.cpp:40] CtrlServer listening on 0.0.0.0:45119
+I20230303 15:33:07.692826 25032 rank_info_bootstrap_server.cpp:64] RankInfoBootstrapServer listening on 0.0.0.0:29500
+I20230303 15:33:27.825832 25032 epoll_comm_network.cpp:63] CommNet:Epoll listening on 0.0.0.0:42307
+I20230303 15:33:30.023432 25032 version.cpp:22] OneFlow git version: 1442b30a
+I20230303 15:33:30.023552 25032 cuda_device_manager_factory.cpp:63] CUDA runtime version: 11.7
+I20230303 15:33:30.023586 25032 cuda_device_manager_factory.cpp:72] cuDNN version: 8.7.0
+I20230303 15:33:30.023597 25032 cuda_device_manager_factory.cpp:85] NCCL version: 2.12.10
+I20230303 15:33:35.571519 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_0-InsertPinnedIdentityOpPass
+I20230303 15:33:36.315668 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_0-InsertPinnedIdentityOpPass
+I20230303 15:33:36.316016 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 InsertPinnedIdentityOpPass","mem_rss":"2379.000000 MB","time_cost":"744 milliseconds"}
+I20230303 15:33:36.316048 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_1-EliminateDeadNodesPass
+I20230303 15:33:37.085783 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_1-EliminateDeadNodesPass
+I20230303 15:33:37.086591 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 EliminateDeadNodesPass","mem_rss":"2393.000000 MB","time_cost":"769 milliseconds"}
+I20230303 15:33:37.086616 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_2-NormalizationExponentialAverageAutoTickPass
+I20230303 15:33:37.086633 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_2-NormalizationExponentialAverageAutoTickPass
+I20230303 15:33:37.086738 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 NormalizationExponentialAverageAutoTickPass","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:37.086750 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_3-AutoMixedPrecision
+I20230303 15:33:37.086757 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_3-AutoMixedPrecision
+I20230303 15:33:37.086781 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AutoMixedPrecision","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:37.086791 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_4-PruneAmpWhiteIdentityOpPass
+I20230303 15:33:37.087697 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_4-PruneAmpWhiteIdentityOpPass
+I20230303 15:33:37.087754 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 PruneAmpWhiteIdentityOpPass","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:37.087766 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_5-OptimizerPlacementOptimizationPass
+I20230303 15:33:37.750597 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_5-OptimizerPlacementOptimizationPass
+I20230303 15:33:37.751562 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 OptimizerPlacementOptimizationPass","mem_rss":"2393.000000 MB","time_cost":"662 milliseconds"}
+I20230303 15:33:37.751588 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_6-FuseAddToOutputPass
+I20230303 15:33:37.751602 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_6-FuseAddToOutputPass
+I20230303 15:33:37.751672 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseAddToOutputPass","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:37.751683 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_7-IRRoundTripBeforeAD
+I20230303 15:33:37.751709 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_7-IRRoundTripBeforeAD
+I20230303 15:33:37.751736 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 IRRoundTripBeforeAD","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:37.751744 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_8-DynamicLossScaleSchedulePass
+I20230303 15:33:37.751751 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_8-DynamicLossScaleSchedulePass
+I20230303 15:33:37.751775 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DynamicLossScaleSchedulePass","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:37.751783 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_9-AutoTrainStep
+I20230303 15:33:38.391180 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_9-AutoTrainStep
+I20230303 15:33:38.392124 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AutoTrainStep","mem_rss":"2393.000000 MB","time_cost":"639 milliseconds"}
+I20230303 15:33:38.392151 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_10-AutoLearningRate
+I20230303 15:33:39.032327 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_10-AutoLearningRate
+I20230303 15:33:39.033249 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AutoLearningRate","mem_rss":"2393.000000 MB","time_cost":"640 milliseconds"}
+I20230303 15:33:39.033277 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_11-QuantAwareTraining
+I20230303 15:33:39.033295 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_11-QuantAwareTraining
+I20230303 15:33:39.033370 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 QuantAwareTraining","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:39.033380 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_12-GenerateOptimizerOpConfs
+I20230303 15:33:39.689385 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_12-GenerateOptimizerOpConfs
+I20230303 15:33:39.690305 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 GenerateOptimizerOpConfs","mem_rss":"2393.000000 MB","time_cost":"656 milliseconds"}
+I20230303 15:33:39.690328 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_13-PrunePinnedIdentityOpPass
+I20230303 15:33:40.334780 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_13-PrunePinnedIdentityOpPass
+I20230303 15:33:40.334976 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 PrunePinnedIdentityOpPass","mem_rss":"2393.000000 MB","time_cost":"644 milliseconds"}
+I20230303 15:33:40.334995 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_14-ReplaceEmbeddingOps
+I20230303 15:33:40.335548 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_14-ReplaceEmbeddingOps
+I20230303 15:33:40.336390 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 ReplaceEmbeddingOps","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:40.336405 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_15-SequentialOneEmbeddingOpsPass
+I20230303 15:33:40.336426 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_15-SequentialOneEmbeddingOpsPass
+I20230303 15:33:40.336481 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 SequentialOneEmbeddingOpsPass","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:40.336488 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_16-FuseEmbeddingShuffleInteractionPass
+I20230303 15:33:40.336496 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_16-FuseEmbeddingShuffleInteractionPass
+I20230303 15:33:40.336517 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseEmbeddingShuffleInteractionPass","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:40.336524 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_17-FuseBCEReduceMeanFwBwPass
+I20230303 15:33:40.336530 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_17-FuseBCEReduceMeanFwBwPass
+I20230303 15:33:40.336549 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseBCEReduceMeanFwBwPass","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:40.336555 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_18-AddSspVariableProxy
+I20230303 15:33:40.336565 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_18-AddSspVariableProxy
+I20230303 15:33:40.336583 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AddSspVariableProxy","mem_rss":"2393.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:40.336591 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_19-CheckpointingPass
+I20230303 15:33:40.914194 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_19-CheckpointingPass
+I20230303 15:33:40.915230 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 CheckpointingPass","mem_rss":"2393.000000 MB","time_cost":"577 milliseconds"}
+I20230303 15:33:40.915254 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_20-CudnnFusedNormalizationAddReluPass
+I20230303 15:33:40.916411 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_20-CudnnFusedNormalizationAddReluPass
+I20230303 15:33:40.916465 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 CudnnFusedNormalizationAddReluPass","mem_rss":"2393.000000 MB","time_cost":"1 milliseconds"}
+I20230303 15:33:40.916476 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_21-PruneCastToStaticShapeOpsPass
+I20230303 15:33:41.561748 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_21-PruneCastToStaticShapeOpsPass
+I20230303 15:33:41.562831 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 PruneCastToStaticShapeOpsPass","mem_rss":"2394.000000 MB","time_cost":"645 milliseconds"}
+I20230303 15:33:41.562860 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_22-IRRoundTrip
+I20230303 15:33:41.562881 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_22-IRRoundTrip
+I20230303 15:33:41.562911 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 IRRoundTrip","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:41.562919 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_23-FuseAddToOutputPass1
+I20230303 15:33:41.562924 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_23-FuseAddToOutputPass1
+I20230303 15:33:41.562964 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseAddToOutputPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:41.562971 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_24-FuseConsecutiveAddPass
+I20230303 15:33:42.219784 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_24-FuseConsecutiveAddPass
+I20230303 15:33:42.220930 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseConsecutiveAddPass","mem_rss":"2394.000000 MB","time_cost":"656 milliseconds"}
+I20230303 15:33:42.220953 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_25-IndexedSlicesOptimizerRewritePass
+I20230303 15:33:42.220961 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_25-IndexedSlicesOptimizerRewritePass
+I20230303 15:33:42.221205 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 IndexedSlicesOptimizerRewritePass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:42.221213 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_26-SplitSparseSoftmaxCrossEntropyOpPass
+I20230303 15:33:42.221609 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_26-SplitSparseSoftmaxCrossEntropyOpPass
+I20230303 15:33:42.222600 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 SplitSparseSoftmaxCrossEntropyOpPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:42.222612 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_27-DoParallelCastBeforeWideningTypeCast
+I20230303 15:33:42.724642 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_27-DoParallelCastBeforeWideningTypeCast
+I20230303 15:33:42.725786 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DoParallelCastBeforeWideningTypeCast","mem_rss":"2394.000000 MB","time_cost":"502 milliseconds"}
+I20230303 15:33:42.725809 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_28-FuseCastScalePass
+I20230303 15:33:42.725817 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_28-FuseCastScalePass
+I20230303 15:33:42.726809 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseCastScalePass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:42.726822 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_29-PruneParallelCastOpsPass
+I20230303 15:33:43.298097 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_29-PruneParallelCastOpsPass
+I20230303 15:33:43.299280 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 PruneParallelCastOpsPass","mem_rss":"2394.000000 MB","time_cost":"571 milliseconds"}
+I20230303 15:33:43.299304 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_30-FuseUpdateOpsPass
+I20230303 15:33:43.299316 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_30-FuseUpdateOpsPass
+I20230303 15:33:43.300329 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseUpdateOpsPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.300343 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_31-FuseModelUpdateCastOpsPass
+I20230303 15:33:43.300360 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_31-FuseModelUpdateCastOpsPass
+I20230303 15:33:43.300812 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FuseModelUpdateCastOpsPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.300833 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_32-MultiTensorModelUpdatePass
+I20230303 15:33:43.300840 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_32-MultiTensorModelUpdatePass
+I20230303 15:33:43.300863 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 MultiTensorModelUpdatePass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.300868 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_33-FixPipelineStageIdPass
+I20230303 15:33:43.300875 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_33-FixPipelineStageIdPass
+I20230303 15:33:43.300894 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 FixPipelineStageIdPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.300901 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_34-PipelineBufferPass
+I20230303 15:33:43.300907 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_34-PipelineBufferPass
+I20230303 15:33:43.300925 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 PipelineBufferPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.300931 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_35-AutoParallelPass
+I20230303 15:33:43.300937 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_35-AutoParallelPass
+I20230303 15:33:43.301080 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AutoParallelPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.301087 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_36-DelayVariableOpExecutionPass
+I20230303 15:33:43.301093 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_36-DelayVariableOpExecutionPass
+I20230303 15:33:43.301112 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DelayVariableOpExecutionPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.301120 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_37-CutlassConvTuningWarmupPass
+I20230303 15:33:43.301126 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_37-CutlassConvTuningWarmupPass
+I20230303 15:33:43.301146 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 CutlassConvTuningWarmupPass","mem_rss":"2394.000000 MB","time_cost":"0 milliseconds"}
+I20230303 15:33:43.301151 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_38-DumpVariableInfoPass
+I20230303 15:33:43.798964 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_38-DumpVariableInfoPass
+I20230303 15:33:43.800139 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DumpVariableInfoPass","mem_rss":"2394.000000 MB","time_cost":"497 milliseconds"}
+I20230303 15:33:43.800163 25032 job_build_and_infer_ctx.cpp:948] BaseConvLSTMGraph_0 start compiling with pass pass_cnt_39-DumpBlobParallelConfPass
+I20230303 15:33:44.329241 25032 job_build_and_infer_ctx.cpp:962] BaseConvLSTMGraph_0 finish compiling with pass pass_cnt_39-DumpBlobParallelConfPass
+I20230303 15:33:44.330404 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DumpBlobParallelConfPass","mem_rss":"2394.000000 MB","time_cost":"529 milliseconds"}
+I20230303 15:33:44.341285 25032 cost_util.h:98] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 OptimizationLogicalGraph","mem_rss":"2394.000000 MB","time_cost":"9 seconds"}
+I20230303 15:33:46.820313 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 GroupBoxingByDstParallel","mem_rss":"2477.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:47.469877 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 BoxingWithMiddleNodes","mem_rss":"2477.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:48.116497 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 SetCtrl","mem_rss":"2477.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:48.848645 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AutoPrependTick","mem_rss":"2477.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:49.483615 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AddTickForTimeShape","mem_rss":"2477.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:50.299257 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AutoSourceAndSinkTick","mem_rss":"2481.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:50.940115 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 CriticalSectionTick","mem_rss":"2481.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:50.941360 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 SystemOpFillJobNamePass","mem_rss":"2482.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:51.623334 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DumpBlobParallelConfPass","mem_rss":"2482.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:52.502161 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 InsertNcclLogicalOpPass","mem_rss":"2496.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:53.222719 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DumpBlobParallelConfPass","mem_rss":"2496.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:54.631738 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 CheckOpGraph","mem_rss":"2496.000000 MB","time_cost":"1 seconds"}
+I20230303 15:33:54.632902 25032 cost_util.h:98] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 CompleteJob","mem_rss":"2496.000000 MB","time_cost":"9 seconds"}
+I20230303 15:33:55.543869 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 NewOpGraph","mem_rss":"2520.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:57.372113 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 BuildTaskGraph","mem_rss":"2703.000000 MB","time_cost":"1 seconds"}
+I20230303 15:33:58.816138 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 AddTaskToPlan","mem_rss":"2869.000000 MB","time_cost":"1 seconds"}
+I20230303 15:33:59.201586 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 InferMemShare","mem_rss":"2873.000000 MB","time_cost":"0 seconds"}
+I20230303 15:33:59.599900 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 GenMemBlockAndChunk","mem_rss":"2878.000000 MB","time_cost":"0 seconds"}
+I20230303 15:34:02.538666 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 LogPlan","mem_rss":"2894.000000 MB","time_cost":"2 seconds"}
+I20230303 15:34:02.556936 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 GenRegisterHint","mem_rss":"2894.000000 MB","time_cost":"0 seconds"}
+I20230303 15:34:02.558331 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 GenCollectiveBoxingPlan","mem_rss":"2894.000000 MB","time_cost":"0 seconds"}
+I20230303 15:34:02.581547 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 DumpCtrlRegstInfoToPlan","mem_rss":"2894.000000 MB","time_cost":"0 seconds"}
+I20230303 15:34:02.622771 25032 plan_util.cpp:1139] 
+ Graph name BaseConvLSTMGraph_0 in Rank: 0, Device: 0 needs to allocate [ 9865.42 MiB ] device memory. 
+   In general, Chunk id: 1  memory is [ 9675.98 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 57.6067 MiB ] with mem_block_num = 5182
+        Eager Variable Tensor total memory is [ 131.826 MiB ] with mem_block_num = 168
+I20230303 15:34:02.623425 25032 plan_util.cpp:1139] 
+ Graph name BaseConvLSTMGraph_0 in Rank: 1, Device: 1 needs to allocate [ 9865.42 MiB ] device memory. 
+   In general, Chunk id: 3  memory is [ 9675.98 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 57.6067 MiB ] with mem_block_num = 5182
+        Eager Variable Tensor total memory is [ 131.826 MiB ] with mem_block_num = 168
+I20230303 15:34:02.624047 25032 plan_util.cpp:1139] 
+ Graph name BaseConvLSTMGraph_0 in Rank: 2, Device: 2 needs to allocate [ 9865.42 MiB ] device memory. 
+   In general, Chunk id: 2  memory is [ 9675.98 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 57.6067 MiB ] with mem_block_num = 5182
+        Eager Variable Tensor total memory is [ 131.826 MiB ] with mem_block_num = 168
+I20230303 15:34:02.624680 25032 plan_util.cpp:1139] 
+ Graph name BaseConvLSTMGraph_0 in Rank: 3, Device: 3 needs to allocate [ 9865.42 MiB ] device memory. 
+   In general, Chunk id: 0  memory is [ 9675.98 MiB ] with mem_block_num = 1
+        Unreused memory not eager var is  [ 57.6067 MiB ] with mem_block_num = 5182
+        Eager Variable Tensor total memory is [ 131.826 MiB ] with mem_block_num = 168
+I20230303 15:34:03.163192 25032 cost_util.h:100] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 GenMemAndLightPlanLog","mem_rss":"2894.000000 MB","time_cost":"0 seconds"}
+I20230303 15:34:03.163988 25032 cost_util.h:98] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 CompilePlan","mem_rss":"2894.000000 MB","time_cost":"8 seconds"}
+I20230303 15:34:03.965761 25032 cost_util.h:98] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 SyncPlan","mem_rss":"2898.000000 MB","time_cost":"0 seconds"}
+I20230303 15:34:04.422835 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.422897 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.422915 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.422943 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.425499 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.425536 25032 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 15:34:04.425552 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.425565 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.426005 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.426029 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.426046 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.426059 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.426409 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.426431 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.426447 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.426460 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.427136 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.427162 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.427179 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.427192 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.427573 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.427596 25032 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 15:34:04.427613 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.427624 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.428015 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.428037 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.428053 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.428066 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.428464 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.428489 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.428505 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.428519 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.430063 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.430085 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.430100 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.430112 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.432353 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.432382 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.432399 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.432412 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.433132 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.433157 25032 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 15:34:04.433174 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.433187 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.434432 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.434456 25032 eager_boxing_logger.cpp:43] Logical shape: (256,16,5,5)
+I20230303 15:34:04.434471 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.434484 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.435223 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.435251 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.435267 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.435279 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.435639 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.435650 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.435658 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.435665 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.436410 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.436424 25032 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 15:34:04.436432 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.436439 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.437450 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.437463 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.437472 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.437479 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.438192 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.438205 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.438213 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.438220 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.438637 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.438647 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.438656 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.438663 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.439074 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.439085 25032 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 15:34:04.439093 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.439100 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.439515 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.439527 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.439534 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.439541 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.439952 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.439963 25032 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 15:34:04.439971 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.439978 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.440428 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.440440 25032 eager_boxing_logger.cpp:43] Logical shape: (256,64,5,5)
+I20230303 15:34:04.440448 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.440454 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.441491 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.441504 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.441512 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.441525 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.443327 25032 eager_boxing_logger.cpp:42] Boxing route: symmetric-b-to-s
+I20230303 15:34:04.443341 25032 eager_boxing_logger.cpp:43] Logical shape: (256,100,100)
+I20230303 15:34:04.443351 25032 eager_boxing_logger.cpp:44] Altered state of sbp: (B) -> (S(0))
+I20230303 15:34:04.443356 25032 eager_boxing_logger.cpp:45] Altered state of placement: oneflow.placement(type="cuda", ranks=[0, 1, 2, 3]) -> oneflow.placement(type="cuda", ranks=[0, 1, 2, 3])
+I20230303 15:34:04.599411 25032 thread_manager.cpp:53]  Actor thread: 4194313 created.
+I20230303 15:34:04.599493 25032 thread_manager.cpp:53]  Actor thread: 4194312 created.
+I20230303 15:34:04.599529 25032 thread_manager.cpp:53]  Actor thread: 4194314 created.
+I20230303 15:34:04.599557 25032 thread_manager.cpp:53]  Actor thread: 4194355 created.
+I20230303 15:34:04.599602 25032 thread_manager.cpp:53]  Actor thread: 4194356 created.
+I20230303 15:34:04.599635 25032 thread_manager.cpp:53]  Actor thread: 4194306 created.
+I20230303 15:34:04.599668 25032 thread_manager.cpp:53]  Actor thread: 4194353 created.
+I20230303 15:34:04.599711 25032 thread_manager.cpp:53]  Actor thread: 4194310 created.
+I20230303 15:34:04.601003 25032 thread_manager.cpp:53]  Actor thread: 8388609 created.
+I20230303 15:34:04.601045 25032 thread_manager.cpp:53]  Actor thread: 4194354 created.
+I20230303 15:34:04.601087 25032 thread_manager.cpp:53]  Actor thread: 4194305 created.
+I20230303 15:34:04.601131 25032 thread_manager.cpp:53]  Actor thread: 4194357 created.
+I20230303 15:34:04.601171 25032 thread_manager.cpp:53]  Actor thread: 4194352 created.
+I20230303 15:34:04.601224 25032 thread_manager.cpp:53]  Actor thread: 4194307 created.
+I20230303 15:34:04.602749 25032 thread_manager.cpp:53]  Actor thread: 8388608 created.
+I20230303 15:34:04.602788 25032 thread_manager.cpp:53]  Actor thread: 4194309 created.
+I20230303 15:34:04.602815 25032 thread_manager.cpp:53]  Actor thread: 4194304 created.
+I20230303 15:34:04.604789 25032 thread_manager.cpp:53]  Actor thread: 8388610 created.
+I20230303 15:34:04.604827 25032 thread_manager.cpp:53]  Actor thread: 4194311 created.
+I20230303 15:34:04.604853 25032 thread_manager.cpp:53]  Actor thread: 4194308 created.
+I20230303 15:34:06.869402 25032 cost_util.h:98] [count log]{"loc":"[GraphCompile]BaseConvLSTMGraph_0 InitRuntime","mem_rss":"3234.000000 MB","time_cost":"2 seconds"}
+I20230303 15:34:08.105012 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.105067 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.223968 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.223991 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.224246 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.224256 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.224347 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.224355 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.224506 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.224514 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.224633 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.224640 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.228705 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.228726 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.228822 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.228828 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.229048 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.229065 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.229144 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.229151 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.229262 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.229269 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.229377 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.229384 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.232110 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.232129 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.232220 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.232228 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.232446 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.232455 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.232548 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.232555 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.232642 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.232648 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.232745 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.232753 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.234222 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.234241 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.234328 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.234334 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.234536 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.234544 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.234617 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.234624 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.234687 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.234694 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.234791 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:08.234797 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:08.932886 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.932929 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.933018 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.933025 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.933149 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.933156 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.933229 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.933235 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.933368 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.933375 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.933481 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.933487 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.961522 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.961546 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.961620 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.961627 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.961846 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.961853 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.961926 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.961932 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.962038 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.962044 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.962136 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.962141 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.981950 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.981971 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.982443 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.982450 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.983707 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.983714 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.984431 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.984439 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.984939 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.984946 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.985474 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.985481 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.991065 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.991086 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.991145 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.991151 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.991336 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.991343 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.991416 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:08.991422 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:08.991497 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:08.991503 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:08.991596 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:08.991602 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:09.721798 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.721841 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.722018 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.722025 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.722261 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.722268 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.722388 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.722394 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.722532 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:09.722538 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:09.722635 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:09.722651 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:09.750411 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.750437 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.750571 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.750576 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.750799 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.750806 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.750916 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.750921 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.751017 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:09.751024 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:09.751121 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:09.751127 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:09.770833 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.770860 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.771330 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.771337 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.772553 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.772562 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.773263 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.773269 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.773769 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:09.773777 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:09.774307 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:09.774313 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:09.779978 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.780001 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.780123 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.780129 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.780341 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.780349 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.780439 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:09.780445 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:09.780508 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:09.780514 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:09.780608 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:09.780614 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:10.514820 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.514874 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.515018 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.515026 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.515134 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.515141 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.515192 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.515198 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.515281 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:10.515288 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:10.515390 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:10.515396 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:10.543578 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.543603 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.543670 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.543677 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.543903 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.543910 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.543982 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.543988 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.544093 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:10.544099 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:10.544190 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:10.544196 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:10.564106 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.564128 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.564603 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.564611 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.565876 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.565881 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.566603 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.566610 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.567116 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:10.567121 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:10.567654 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:10.567660 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:10.573276 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.573297 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.573354 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.573360 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.573546 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.573554 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.573626 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:10.573632 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:10.573706 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:10.573712 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:10.573807 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:10.573812 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:11.311051 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.311095 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.311275 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.311285 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.311554 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.311569 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.311681 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.311687 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.311831 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:11.311838 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:11.311939 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:11.311946 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:11.339793 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.339816 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.339936 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.339942 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.340200 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.340209 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.340317 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.340325 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.340418 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:11.340425 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:11.340510 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:11.340517 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:11.360301 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.360323 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.360796 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.360803 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.362032 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.362040 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.362754 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.362761 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.363265 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:11.363271 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:11.363802 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:11.363809 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:11.369480 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.369501 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.369599 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.369607 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.369784 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.369791 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.369875 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:11.369882 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:11.369941 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:11.369947 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:11.370046 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:11.370052 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:12.107409 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.107470 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.107628 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.107636 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.107787 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.107795 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.107878 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.107884 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.108006 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.108012 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.108100 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.108106 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.136157 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.136181 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.136296 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.136303 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.136484 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.136492 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.136579 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.136585 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.136678 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.136684 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.136783 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.136790 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.156670 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.156692 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.157191 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.157196 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.158437 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.158444 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.159168 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.159173 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.159678 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.159684 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.160216 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.160223 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.165846 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.165866 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.165948 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.165954 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.166114 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.166121 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.166199 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.166205 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.166271 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.166277 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.166383 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:12.166400 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:12.902024 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.902089 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.902242 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.902251 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.902591 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.902598 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.902729 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.902735 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.902926 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.902933 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.903057 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.903064 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.930696 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.930720 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.930838 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.930845 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.931160 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.931167 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.931260 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.931267 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.931413 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.931421 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.931581 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.931586 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.951211 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.951257 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.951673 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.951681 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.952899 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.952908 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.953629 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.953635 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.954138 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.954145 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.954679 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.954685 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.960630 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.960652 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.960765 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.960772 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.961035 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.961043 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.961114 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:12.961122 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:12.961227 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:12.961234 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:12.961377 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:12.961385 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:13.696231 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.696277 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.696434 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.696442 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.696620 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.696627 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.696717 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.696723 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.696858 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:13.696866 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:13.696956 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:13.696962 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:13.725003 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.725033 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.725143 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.725150 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.725327 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.725333 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.725421 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.725427 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.725524 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:13.725531 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:13.725627 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:13.725633 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:13.745513 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.745534 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.746026 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.746033 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.747273 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.747279 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.748003 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.748008 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.748513 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:13.748522 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:13.749053 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:13.749060 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:13.754683 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.754703 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.754787 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.754793 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.754956 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.754971 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.755040 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:13.755048 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:13.755110 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:13.755115 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:13.755223 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:13.755228 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:14.492559 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.492605 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.492691 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.492698 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.492820 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.492826 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.492899 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.492905 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.493039 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:14.493046 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:14.493151 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:14.493157 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:14.521343 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.521370 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.521436 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.521442 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.521667 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.521674 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.521749 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.521754 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.521859 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:14.521867 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:14.521957 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:14.521963 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:14.541868 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.541890 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.542366 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.542373 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.543639 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.543645 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.544368 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.544376 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.544879 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:14.544886 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:14.545418 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:14.545425 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:14.551041 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.551062 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.551132 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.551139 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.551313 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.551321 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.551394 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:14.551400 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:14.551473 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:14.551479 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:14.551574 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:14.551580 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:15.285902 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.285943 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.286033 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.286041 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.286160 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.286167 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.286242 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.286247 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.286382 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:15.286388 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:15.286494 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:15.286500 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:15.314683 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.314705 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.314770 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.314777 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.315007 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.315013 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.315088 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.315093 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.315198 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:15.315204 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:15.315295 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:15.315301 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:15.335207 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.335228 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.335703 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.335711 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.336977 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.336984 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.337705 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.337711 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.338217 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:15.338223 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:15.338754 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:15.338770 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:15.346161 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.346184 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.346246 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.346251 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.346354 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.346359 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.346406 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:15.346411 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:15.346453 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:15.346459 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:15.346514 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:15.346520 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:16.079437 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.079481 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.079675 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.079684 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.079975 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.079982 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.080116 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.080122 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.080281 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.080289 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.080392 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.080399 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.108171 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.108196 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.108341 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.108350 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.108604 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.108611 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.108736 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.108742 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.108850 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.108856 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.108960 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.108968 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.128695 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.128715 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.129186 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.129194 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.130414 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.130421 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.131125 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.131131 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.131635 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.131644 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.132174 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.132181 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.137902 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.137923 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.138047 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.138053 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.138265 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.138271 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.138372 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.138378 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.138442 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.138447 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.138547 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:16.138553 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:16.874521 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.874572 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.874692 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.874701 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.874805 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.874811 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.874861 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.874866 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.874974 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.874979 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.875087 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.875092 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.903278 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.903301 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.903367 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.903374 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.903604 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.903610 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.903685 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.903692 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.903797 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.903803 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.903895 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.903900 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.923804 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.923827 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.924301 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.924309 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.925573 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.925590 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.926304 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.926314 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.926815 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.926827 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.927351 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.927358 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.932977 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.933004 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.933087 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.933096 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.933245 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.933254 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.933326 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 640000 to 0
+I20230303 15:34:16.933332 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 640000 from 0
+I20230303 15:34:16.933405 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 102400 to 0
+I20230303 15:34:16.933413 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 102400 from 0
+I20230303 15:34:16.933506 25384 nccl_logical_send_recv_kernel.cpp:199] 0 send 25600 to 0
+I20230303 15:34:16.933514 25384 nccl_logical_send_recv_kernel.cpp:204] 0 recv 25600 from 0
+I20230303 15:34:17.355239 25032 nn_graph.cpp:93] Graph destructor Try to close c nn graph name BaseConvLSTMGraph_0.
+I20230303 15:34:17.355288 25032 nn_graph.cpp:99] Try to close c nn graph name BaseConvLSTMGraph_0.
+I20230303 15:34:17.868716 25032 thread_manager.cpp:67]  Actor thread: 4194355 finished when the graph is destructed.
+I20230303 15:34:17.868863 25032 thread_manager.cpp:67]  Actor thread: 4194356 finished when the graph is destructed.
+I20230303 15:34:17.869002 25032 thread_manager.cpp:67]  Actor thread: 4194353 finished when the graph is destructed.
+I20230303 15:34:17.869122 25032 nn_graph.cpp:103] Finish close c nn graph name BaseConvLSTMGraph_0.
+I20230303 15:34:19.036397 25032 multi_client_session_context.cpp:147] Try to delete multi client session context.
+I20230303 15:34:19.036631 25032 thread_manager.cpp:28]  Actor thread: 4194308 finished when process exits.
+I20230303 15:34:19.040969 25032 thread_manager.cpp:28]  Actor thread: 4194311 finished when process exits.
+I20230303 15:34:19.046485 25032 thread_manager.cpp:28]  Actor thread: 8388610 finished when process exits.
+I20230303 15:34:19.051362 25032 thread_manager.cpp:28]  Actor thread: 4194304 finished when process exits.
+I20230303 15:34:19.054818 25032 thread_manager.cpp:28]  Actor thread: 4194309 finished when process exits.
+I20230303 15:34:19.327826 25032 thread_manager.cpp:28]  Actor thread: 8388608 finished when process exits.
+I20230303 15:34:19.330008 25032 thread_manager.cpp:28]  Actor thread: 4194307 finished when process exits.
+I20230303 15:34:19.332357 25032 thread_manager.cpp:28]  Actor thread: 4194313 finished when process exits.
+I20230303 15:34:19.332571 25032 thread_manager.cpp:28]  Actor thread: 4194352 finished when process exits.
+I20230303 15:34:19.337833 25032 thread_manager.cpp:28]  Actor thread: 4194312 finished when process exits.
+I20230303 15:34:19.339674 25032 thread_manager.cpp:28]  Actor thread: 4194314 finished when process exits.
+I20230303 15:34:19.341516 25032 thread_manager.cpp:28]  Actor thread: 4194306 finished when process exits.
+I20230303 15:34:19.343858 25032 thread_manager.cpp:28]  Actor thread: 4194310 finished when process exits.
+I20230303 15:34:19.354894 25032 thread_manager.cpp:28]  Actor thread: 8388609 finished when process exits.
+I20230303 15:34:19.359009 25032 thread_manager.cpp:28]  Actor thread: 4194354 finished when process exits.
+I20230303 15:34:19.361414 25032 thread_manager.cpp:28]  Actor thread: 4194305 finished when process exits.
+I20230303 15:34:19.363711 25032 thread_manager.cpp:28]  Actor thread: 4194357 finished when process exits.
+I20230303 15:34:19.867976 25032 multi_client_session_context.cpp:173] Finish delete multi client session context.
+I20230303 15:34:19.908532 25032 epoll_comm_network.cpp:89] CommNet Thread 0 finish
+I20230303 15:34:19.910434 25032 epoll_comm_network.cpp:89] CommNet Thread 1 finish
+I20230303 15:34:19.916517 25032 epoll_comm_network.cpp:89] CommNet Thread 2 finish
+I20230303 15:34:19.918282 25032 epoll_comm_network.cpp:89] CommNet Thread 3 finish

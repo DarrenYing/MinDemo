@@ -8,4 +8,4 @@ class FakeDataset(data.Dataset):
         return flow.randn(20, 1, 400, 400)
 
     def __len__(self):
-        return 1000
+        return 100
